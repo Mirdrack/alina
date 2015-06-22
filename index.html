@@ -3,10 +3,12 @@
 	<title>Angular</title>
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 
 	<script type="text/javascript" src="app/app.js"></script>
 
@@ -16,11 +18,11 @@
             <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Angular Routing Example</a>
+                    <a class="navbar-brand" href="#home">Angular Routing Example</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
                     <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
                 </ul>
@@ -28,7 +30,7 @@
             </nav>
         </header>
 	<div id="main">
-		<div ng-view></div>
+		<div class="page {{ pageClass }}" ng-view></div>
 	</div>
 </body>
 </html>

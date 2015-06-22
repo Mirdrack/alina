@@ -1,9 +1,13 @@
-var alinaApp = angular.module('alinaApp', ['ngRoute']);
+var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate']);
 
 alinaApp.config(function ($routeProvider) {
 
 	$routeProvider
 		.when('/', {
+			templateUrl : 'pages/home.html',
+			controller : 'mainController'
+		})
+		.when('/home', {
 			templateUrl : 'pages/home.html',
 			controller : 'mainController'
 		})
@@ -20,14 +24,17 @@ alinaApp.config(function ($routeProvider) {
 alinaApp.controller('mainController', function ($scope) {
 
 	$scope.message = 'This is home page';
+	$scope.pageClass = 'page-home';
 });
 
 alinaApp.controller('aboutController', function ($scope) {
 
 	$scope.message = 'Contact page';
+	$scope.pageClass = 'page-about';
 });
 
 alinaApp.controller('contactController', function ($scope) {
 
 	$scope.message = 'The contact';
+	$scope.pageClass = 'page-contact';
 });
