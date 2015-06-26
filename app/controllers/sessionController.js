@@ -1,7 +1,17 @@
-alinaApp.controller('sessionController', function ($scope) {
+alinaApp.controller('sessionController', ['$scope', 'authFactory' ,function ($scope, authFactory) {
+
+	succesAuth = function (response)
+	{
+		console.log('succesAuth');
+	};
 
 	$scope.signup = function () {
-		console.log('signup');
+
+		console.log('signup controller');
+		authFactory.signup({'dato' : ' 1'}, succesAuth, function () {
+
+			console.log('failed');
+		});
 	};
 
 	$scope.signin = function () {
@@ -9,4 +19,4 @@ alinaApp.controller('sessionController', function ($scope) {
 	};
 
 	$scope.message = 'sessionController';
-});
+}]);

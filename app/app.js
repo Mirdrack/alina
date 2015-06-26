@@ -27,6 +27,10 @@ alinaApp.config(function ($routeProvider) {
 			templateUrl : 'pages/signin.html',
 			controller : 'sessionController'
 		});
+})
+.constant('urls', {
+	BASE: 'http://rea.app',
+	BASE_API: 'http://api.jwt.dev:8000/v1'
 });
 
 alinaApp.controller('mainController', function ($scope) {
