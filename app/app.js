@@ -18,6 +18,14 @@ alinaApp.config(function ($routeProvider) {
 		.when('/contact', {
 			templateUrl : 'pages/contact.html',
 			controller : 'contactController'
+		})
+		.when('/signup', {
+			templateUrl : 'pages/signup.html',
+			controller : 'sessionController'
+		})
+		.when('/signin', {
+			templateUrl : 'pages/signin.html',
+			controller : 'sessionController'
 		});
 });
 
@@ -38,3 +46,4 @@ alinaApp.controller('contactController', function ($scope) {
 	$scope.message = 'The contact';
 	$scope.pageClass = 'page-contact';
 });
+
