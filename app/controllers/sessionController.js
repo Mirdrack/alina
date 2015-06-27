@@ -7,16 +7,23 @@ alinaApp.controller('sessionController', ['$scope', 'authService' ,function ($sc
 
 	$scope.signup = function () {
 
-		console.log('signup controller');
-		authService.signup({'dato' : ' 1'}, succesAuth, function () {
+		var formData = {
+			email: $scope.email,
+			password: $scope.password
+		};
+		authService.signup(formData, succesAuth, function () {
 
 			console.log('failed');
 		});
 	};
 
 	$scope.signin = function () {
-		console.log('signin');
+
+		var formData = {
+			email: $scope.email,
+			password: $scope.password
+		};
+		console.log(formData);
 	};
 
-	$scope.message = 'sessionController';
 }]);

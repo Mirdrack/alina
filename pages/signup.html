@@ -1,5 +1,17 @@
-<div class="jumbotron text-center">
-	<h1>Sing Up</h1>
-	<p>{{ message }}</p>
-	<button ng-click="signup()">The button</button>
+<div class="col-md-4 col-md-offset-4">
+	<h1>Singup</h1>
+	<form class="form-horizontal" ng-submit="signup()">
+		<div class="form-group">
+			<input ng-model="email" type="email" class="form-control" placeholder="Email">
+		</div>
+		<div class="form-group">
+			<input ng-model="password" type="password" class="form-control" placeholder="Password">
+		</div>
+		<div class="form-group">
+			<input type="password" class="form-control" placeholder="Password">
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-lg btn-primary btn-block" value="Signup">
+		</div>
+	</form>
 </div>
