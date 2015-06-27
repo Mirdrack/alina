@@ -1,4 +1,4 @@
-alinaApp.factory('authFactory', ['$http', 'urls', function ($http, urls) {
+alinaApp.factory('authService', ['$http', 'urls', function ($http, urls) {
 
 	return {
 

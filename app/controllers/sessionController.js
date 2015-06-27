@@ -1,4 +1,4 @@
-alinaApp.controller('sessionController', ['$scope', 'authFactory' ,function ($scope, authFactory) {
+alinaApp.controller('sessionController', ['$scope', 'authService' ,function ($scope, authService) {
 
 	succesAuth = function (response)
 	{
@@ -8,7 +8,7 @@ alinaApp.controller('sessionController', ['$scope', 'authFactory' ,function ($sc
 	$scope.signup = function () {
 
 		console.log('signup controller');
-		authFactory.signup({'dato' : ' 1'}, succesAuth, function () {
+		authService.signup({'dato' : ' 1'}, succesAuth, function () {
 
 			console.log('failed');
 		});
