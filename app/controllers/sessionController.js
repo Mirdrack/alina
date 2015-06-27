@@ -13,7 +13,8 @@ alinaApp.controller('sessionController', ['$scope', 'authService' ,function ($sc
 		};
 		authService.signup(formData, succesAuth, function () {
 
-			console.log('failed');
+			console.log('Failed to signup.');
+			//$rootScope.error = 'Failed to signup.';
 		});
 	};
 
@@ -23,7 +24,11 @@ alinaApp.controller('sessionController', ['$scope', 'authService' ,function ($sc
 			email: $scope.email,
 			password: $scope.password
 		};
-		console.log(formData);
+		authService.signin(formData, succesAuth, function () {
+
+			console.log('Invalid credentials.');
+			//$rootScope.error = 'Invalid credentials.';
+		});
 	};
 
 }]);
