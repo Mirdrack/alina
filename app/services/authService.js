@@ -9,7 +9,7 @@ alinaApp.factory('authService', ['$http', 'urls', '$localStorage', function ($ht
 		},
 		signin: function (data, success, error) {
 			console.log(data);
-			$http.post(urls.BASE + '/signin', data).success(success).error(error);
+			$http.post(urls.BASE + '/login', data).success(success).error(error);
 		},
 		logout: function(success) {
 			tokenClaims = {};

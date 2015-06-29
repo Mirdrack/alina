@@ -4,7 +4,7 @@ function ($scope, $rootScope, $localStorage, authService) {
 	succesAuth = function (response)
 	{
 		console.log('succesAuth');
-		$localStorage.token = res.token;
+		$localStorage.token = response.token;
         window.location = '/';
 	};
 
@@ -14,7 +14,6 @@ function ($scope, $rootScope, $localStorage, authService) {
 			email: $scope.email,
 			password: $scope.password
 		};
-		console.log(formData);
 		authService.signup(formData, succesAuth, function () {
 
 			console.log('Failed to signup.');
@@ -28,9 +27,10 @@ function ($scope, $rootScope, $localStorage, authService) {
 			email: $scope.email,
 			password: $scope.password
 		};
-		authService.signin(formData, succesAuth, function () {
+		authService.signin(formData, succesAuth, function (response) {
 
 			console.log('Invalid credentials.');
+			console.log(response);
 			$rootScope.error = 'Invalid credentials.';
 		});
 	};

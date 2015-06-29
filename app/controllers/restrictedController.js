@@ -2,14 +2,12 @@ alinaApp.controller('restrictedController', ['$rootScope', '$scope', 'dataServic
 
 function ($rootScope, $scope, dataService) {
 
-	dataService.getRestrictedData(function (res) {
+	dataService.getRestrictedData(function (response) {
 
-		$scope.data = res.data;
-
+		$scope.data = response.data;
 	}, function () {
 
 		$rootScope.error = 'Failed to fetch restricted content.';
-		
 	});
 
 }]);
