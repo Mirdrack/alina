@@ -1,5 +1,6 @@
 <div class="col-md-4 col-md-offset-4">
 	<h1>Singin</h1>
+	<p data-ng-show="error" class="error">{{ error }}</p>
 	<form class="form-horizontal" ng-submit="signin()">
 		<div class="form-group">
 			<input ng-model="email" type="email" class="form-control" placeholder="Email">

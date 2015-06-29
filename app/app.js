@@ -1,6 +1,6 @@
-var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate']);
+var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate', 'ngStorage']);
 
-alinaApp.config(function ($routeProvider) {
+alinaApp.config(function ($routeProvider, $httpProvider) {
 
 	$routeProvider
 		.when('/', {
@@ -26,11 +26,30 @@ alinaApp.config(function ($routeProvider) {
 		.when('/signin', {
 			templateUrl : 'pages/signin.html',
 			controller : 'sessionController'
+		})
+		.when('/restricted', {
+			templateUrl: 'partials/restricted.html',
+			controller: 'restrictedController'
 		});
+
+
+
 })
 .constant('urls', {
 	BASE: 'http://rea.app',
-	BASE_API: 'http://api.jwt.dev:8000/v1'
+	BASE_API: 'http://api.rea.app/v1'
+})
+.run(function ($rootScope, $location, $localStorage) {
+
+	$rootScope.$on('$routeChangeStart', function (event, next) {
+
+		if($localStorage.token == null) {
+			if(next.templateUrl === 'partials/restricted.html') {
+				$location.path('/signup');
+			}
+		}
+	});
+
 });
 
 alinaApp.controller('mainController', function ($scope) {

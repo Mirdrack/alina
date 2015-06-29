@@ -1,0 +1,24 @@
+{
+  "name": "alina",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Mirdrack/alina",
+  "authors": [
+    "Clemente Estrada <mirdrack@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.1",
+    "angular-route": "~1.4.1",
+    "angular": "~1.4.1",
+    "bootstrap": "~3.3.5",
+    "fontawesome": "~4.3.0",
+    "ngstorage": "~0.3.6"
+  }
+}

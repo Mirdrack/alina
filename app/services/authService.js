@@ -1,14 +1,20 @@
-alinaApp.factory('authService', ['$http', 'urls', function ($http, urls) {
+alinaApp.factory('authService', ['$http', 'urls', '$localStorage', function ($http, urls, $localStorage) {
+
+	var tokenClaims = {};
 
 	return {
-
 		signup: function (data, success, error) {
 			console.log(data);
-			//$http.post(urls.BASE + '/signup', data).success(success).error(error);
+			$http.post(urls.BASE + '/signup', data).success(success).error(error);
 		},
 		signin: function (data, success, error) {
 			console.log(data);
-			//http.post(urls.BASE + '/signin', data).success(success).error(error);
+			$http.post(urls.BASE + '/signin', data).success(success).error(error);
+		},
+		logout: function(success) {
+			tokenClaims = {};
+			delete $local.storage.token;
+			success();
 		}
 	};
 
