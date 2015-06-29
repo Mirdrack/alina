@@ -21,15 +21,25 @@
             <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="#home">Angular Routing Example</a>
                 </div>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
-                    <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
-                    <li>{{ pageClass }}</li>
-                </ul>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+                        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                        <li ng-show="token"><a href="#restricted"><i class="fa fa-lock"></i> Restricted</a></li>
+                        <li ng-hide="token"><a href="#signup"><i class="fa fa-pencil-square-o"></i> Signup</a></li>
+                        <li ng-hide="token"><a href="#singin"><i class="fa fa-sign-in"></i> Signin</a></li>
+                        <li ng-show="token"><a ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    </ul>
+                </div>
             </div>
             </nav>
         </header>
