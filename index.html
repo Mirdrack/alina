@@ -13,12 +13,14 @@
 
     <script type="text/javascript" src="app/app.js"></script>
     <script type="text/javascript" src="app/controllers/sessionController.js"></script>
-	<script type="text/javascript" src="app/services/authService.js"></script>
+    <script type="text/javascript" src="app/controllers/restrictedController.js"></script>
+    <script type="text/javascript" src="app/services/authService.js"></script>
+	<script type="text/javascript" src="app/services/dataService.js"></script>
 
 </head>
 <body >
 	<header>
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default" ng-controller="navbarController">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,8 +38,8 @@
                         <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
                         <li ng-show="token"><a href="#restricted"><i class="fa fa-lock"></i> Restricted</a></li>
                         <li ng-hide="token"><a href="#signup"><i class="fa fa-pencil-square-o"></i> Signup</a></li>
-                        <li ng-hide="token"><a href="#singin"><i class="fa fa-sign-in"></i> Signin</a></li>
-                        <li ng-show="token"><a ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        <li ng-hide="token"><a href="#signin"><i class="fa fa-sign-in"></i> Signin</a></li>
+                        <li ng-show="token"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>

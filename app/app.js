@@ -1,4 +1,4 @@
-var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate', 'ngStorage']);
+var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate']);
 
 alinaApp.config(function ($routeProvider, $httpProvider) {
 
@@ -28,18 +28,18 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 			controller : 'sessionController'
 		})
 		.when('/restricted', {
-			templateUrl: 'partials/restricted.html',
+			templateUrl: 'pages/restricted.html',
 			controller: 'restrictedController'
 		});
 
-		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+		$httpProvider.interceptors.push(['$q', '$location', '$window', function ($q, $location, $window) {
 
 			return {
 				'request': function (config) {
 
 					config.headers = config.headers || {};
-					if($localStorage.token) {
-						config.headers.Authorization = 'Bearer ' + localStorage.token;
+					if($window.localStorage['token']) {
+						config.headers.Authorization = 'Bearer ' + $window.localStorage['token'];
 					}
 					return config;
 				},
@@ -59,11 +59,10 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 	BASE: 'http://rea.app',
 	BASE_API: 'http://api.rea.app/v1'
 })
-.run(function ($rootScope, $location, $localStorage) {
+.run(function ($rootScope, $location, $window) {
 
 	$rootScope.$on('$routeChangeStart', function (event, next) {
-
-		if($localStorage.token == null) {
+		if($window.localStorage['token'] == null) {
 			if(next.templateUrl === 'partials/restricted.html') {
 				$location.path('/signup');
 			}
@@ -72,10 +71,24 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 
 });
 
-alinaApp.controller('mainController', function ($scope) {
+alinaApp.controller('navbarController', function ($scope, authService, $window) {
+
+	$scope.logout = function () {
+		console.log('Get out');
+		authService.logout(function () {
+			window.location = '/';
+		});
+	};
+	console.log('navbarController');
+	$scope.token = $window.localStorage['token'];
+	console.log($scope.token);
+});
+
+alinaApp.controller('mainController', function ($scope, $window) {
 
 	$scope.message = 'This is home page';
 	$scope.pageClass = 'page-home';
+	$scope.token = $window.localStorage['token'];
 });
 
 alinaApp.controller('aboutController', function ($scope) {

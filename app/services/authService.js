@@ -1,4 +1,4 @@
-alinaApp.factory('authService', ['$http', 'urls', '$localStorage', function ($http, urls, $localStorage) {
+alinaApp.factory('authService', ['$http', 'urls', '$window', function ($http, urls, $window) {
 
 	var tokenClaims = {};
 
@@ -13,7 +13,7 @@ alinaApp.factory('authService', ['$http', 'urls', '$localStorage', function ($ht
 		},
 		logout: function(success) {
 			tokenClaims = {};
-			delete $local.storage.token;
+			$window.localStorage.removeItem('token');
 			success();
 		}
 	};

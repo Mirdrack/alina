@@ -1,11 +1,12 @@
-alinaApp.controller('sessionController', ['$scope', '$rootScope', '$localStorage', 'authService' , 
-function ($scope, $rootScope, $localStorage, authService) {
+alinaApp.controller('sessionController', ['$scope', '$rootScope', 'authService' , '$window', 
+function ($scope, $rootScope, authService, $window) {
 
-	succesAuth = function (response)
-	{
-		console.log('succesAuth');
-		$localStorage.token = response.token;
-        window.location = '/';
+	succesAuth = function (response) {
+
+		console.log('Lets show the token');
+		$window.localStorage['token'] = response.token;
+		console.log($window.localStorage['token']);
+        $window.location = '/';
 	};
 
 	$scope.signup = function () {
@@ -30,16 +31,18 @@ function ($scope, $rootScope, $localStorage, authService) {
 		authService.signin(formData, succesAuth, function (response) {
 
 			console.log('Invalid credentials.');
-			console.log(response);
 			$rootScope.error = 'Invalid credentials.';
 		});
 	};
 
-	$scope.logout = function () {
+	// $scope.logout = function () {
+	// 	console.log('Get out');
+	// 	authService.logout(function () {
+	// 		window.location = '/';
+	// 	});
+	// };
 
-		authService.logout(function () {
-			window.location = '/'
-		});
-	};
+	$scope.token = $window.localStorage['token'];
+	console.log($scope.token);
 
 }]);
