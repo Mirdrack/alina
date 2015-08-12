@@ -1,10 +1,11 @@
-alinaApp.factory('dataService', ['$http', 'urls', function ($http, urls) {
+alinaApp.factory('dataService', ['$http', 'urls', '$window', function ($http, urls, $window) {
 
 	return {
 
 		getRestrictedData: function(success, error) {
 
-			$http.get(urls.BASE + '/restricted').success(success).error(error);
+			var token = $window.localStorage['token'];
+			$http.get(urls.BASE + '/restricted?token='+token).success(success).error(error);
 		}
 	};
 }]);
