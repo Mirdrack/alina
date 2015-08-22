@@ -4,33 +4,38 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 
 	$routeProvider
 		.when('/', {
-			templateUrl : 'pages/home.html',
-			controller : 'mainController'
+			templateUrl: 'pages/home.html',
+			controller: 'mainController'
 		})
 		.when('/home', {
-			templateUrl : 'pages/home.html',
-			controller : 'mainController'
+			templateUrl: 'pages/home.html',
+			controller: 'mainController'
 		})
 		.when('/about', {
-			templateUrl : 'pages/about.html',
-			controller : 'aboutController'
+			templateUrl: 'pages/about.html',
+			controller: 'aboutController'
 		})
 		.when('/contact', {
-			templateUrl : 'pages/contact.html',
-			controller : 'contactController'
+			templateUrl: 'pages/contact.html',
+			controller: 'contactController'
 		})
 		.when('/signup', {
-			templateUrl : 'pages/signup.html',
-			controller : 'sessionController'
+			templateUrl: 'pages/signup.html',
+			controller: 'sessionController'
 		})
 		.when('/signin', {
-			templateUrl : 'pages/signin.html',
-			controller : 'sessionController'
+			templateUrl: 'pages/signin.html',
+			controller: 'sessionController'
 		})
 		.when('/restricted', {
 			templateUrl: 'pages/restricted.html',
 			controller: 'restrictedController'
-		});
+		})
+		.when('/profile', {
+			templateUrl: 'pages/users/profile.html',
+			controller: 'profileController'
+		})
+		;
 
 		$httpProvider.interceptors.push(['$q', '$location', '$window', function ($q, $location, $window) {
 
@@ -79,9 +84,7 @@ alinaApp.controller('navbarController', function ($scope, authService, $window) 
 			window.location = '/';
 		});
 	};
-	console.log('navbarController');
 	$scope.token = $window.localStorage['token'];
-	console.log($scope.token);
 });
 
 alinaApp.controller('mainController', function ($scope, $window) {

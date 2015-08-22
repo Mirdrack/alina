@@ -14,8 +14,10 @@
     <script type="text/javascript" src="app/app.js"></script>
     <script type="text/javascript" src="app/controllers/sessionController.js"></script>
     <script type="text/javascript" src="app/controllers/restrictedController.js"></script>
+    <script type="text/javascript" src="app/controllers/profileController.js"></script>
     <script type="text/javascript" src="app/services/authService.js"></script>
-	<script type="text/javascript" src="app/services/dataService.js"></script>
+    <script type="text/javascript" src="app/services/dataService.js"></script>
+	<script type="text/javascript" src="app/services/userService.js"></script>
 
 </head>
 <body >
@@ -34,6 +36,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+                        <li ng-show="token"><a href="#profile"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
                         <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
                         <li ng-show="token"><a href="#restricted"><i class="fa fa-lock"></i> Restricted</a></li>

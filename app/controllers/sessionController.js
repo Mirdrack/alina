@@ -3,9 +3,7 @@ function ($scope, $rootScope, authService, $window) {
 
 	succesAuth = function (response) {
 
-		console.log('Lets show the token');
 		$window.localStorage['token'] = response.token;
-		console.log($window.localStorage['token']);
         $window.location = '/';
 	};
 
@@ -41,8 +39,7 @@ function ($scope, $rootScope, authService, $window) {
 	// 		window.location = '/';
 	// 	});
 	// };
-
 	$scope.token = $window.localStorage['token'];
-	console.log($scope.token);
+	// $scope.tokenClaims = authService.getTokenClaims();
 
 }]);
