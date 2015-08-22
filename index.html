@@ -16,6 +16,7 @@
     <script type="text/javascript" src="app/modules/users.js"></script>
     <script type="text/javascript" src="app/controllers/sessionController.js"></script>
     <script type="text/javascript" src="app/controllers/profileController.js"></script>
+    <script type="text/javascript" src="app/controllers/userController.js"></script>
     <script type="text/javascript" src="app/services/authService.js"></script>
 	<script type="text/javascript" src="app/services/userService.js"></script>
 
@@ -38,7 +39,7 @@
                         <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
                         <li ng-show="token"><a href="#profile"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
-                        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                        <li><a href="#users"><i class="fa fa-user"></i> Users</a></li>
                         <li ng-hide="token"><a href="#signup"><i class="fa fa-pencil-square-o"></i> Signup</a></li>
                         <li ng-hide="token"><a href="#signin"><i class="fa fa-sign-in"></i> Signin</a></li>
                         <li ng-show="token"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>

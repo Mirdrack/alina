@@ -13,10 +13,6 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 			templateUrl: 'pages/about.html',
 			controller: 'aboutController'
 		})
-		.when('/contact', {
-			templateUrl: 'pages/contact.html',
-			controller: 'contactController'
-		})
 		.when('/signup', {
 			templateUrl: 'pages/signup.html',
 			controller: 'sessionController'
@@ -24,10 +20,6 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 		.when('/signin', {
 			templateUrl: 'pages/signin.html',
 			controller: 'sessionController'
-		})
-		.when('/restricted', {
-			templateUrl: 'pages/restricted.html',
-			controller: 'restrictedController'
 		})
 		.when('/profile', {
 			templateUrl: 'pages/users/profile.html',
