@@ -1,11 +1,10 @@
-alinaApp.controller('userController', function ($scope, userService) {
+alinaApp.controller('userController', function ($scope, $rootScope, userService) {
 
 	$scope.pageClass = 'page-contact';
 
-	userService.getProfile(function (response) {
+	userService.getUsers(function (response) {
 
 		$scope.users = response.data;
-		console.log($scope.users);
 	}, 
 	function () {
 
