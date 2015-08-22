@@ -1,6 +1,14 @@
-alinaApp.controller('userController', function ($scope) {
+alinaApp.controller('userController', function ($scope, userService) {
 
-	$scope.message = 'User controller';
 	$scope.pageClass = 'page-contact';
-	console.log('userController');
+
+	userService.getProfile(function (response) {
+
+		$scope.users = response.data;
+		console.log($scope.users);
+	}, 
+	function () {
+
+		$rootScope.error = 'Failed to retrieve users.';
+	});
 });
