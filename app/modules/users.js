@@ -9,5 +9,9 @@ angular.module('users', []).config(function ($routeProvider) {
 			templateUrl: 'pages/users/show.html',
 			controller: 'userShowController'
 		})
+		.when('/users/create', {
+			templateUrl: 'pages/users/create.html',
+			controller: 'userCreateController'
+		})
 		;
 });
