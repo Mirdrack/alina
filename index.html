@@ -34,17 +34,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#home">Angular Routing Example</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-left">
                         <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
-                        <li ng-show="token"><a href="#profile"><i class="fa fa-user"></i> Profile</a></li>
-                        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
                         <li><a href="#users"><i class="fa fa-user"></i> Users</a></li>
+                        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-show="token">
+                            <!-- 
+                                We shoudl fin a way to change the anchor for a button
+                                or hack the style in order to show hand cursor when
+                                user put the mouse hover the link
+                             -->
+                            <a data-toggle="dropdown">
+                                <i class="fa fa-user"></i> Username largo
+                                <span class="caret"></span>
+                            </a>   
+                            <ul class="dropdown-menu">
+                                <li ng-show="token"><a href="#profile"><i class="fa fa-user"></i> Profile</a></li>
+                                <li ng-show="token"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                            </ul>
+                        </li>
                         <li ng-hide="token"><a href="#signup"><i class="fa fa-pencil-square-o"></i> Signup</a></li>
                         <li ng-hide="token"><a href="#signin"><i class="fa fa-sign-in"></i> Signin</a></li>
-                        <li ng-show="token"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
