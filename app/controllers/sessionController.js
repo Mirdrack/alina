@@ -1,6 +1,8 @@
 alinaApp.controller('sessionController', ['$scope', '$rootScope', 'authService' , '$window', 
 function ($scope, $rootScope, authService, $window) {
 
+	$scope.pageClass = 'page-standard';
+	
 	succesAuth = function (response) {
 
 		$window.localStorage['token'] = response.token;

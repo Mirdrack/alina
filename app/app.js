@@ -16,7 +16,7 @@ alinaApp.controller('navbarController', function ($scope, authService, $window) 
 alinaApp.controller('mainController', function ($scope, $window) {
 
 	$scope.message = 'This is home page';
-	$scope.pageClass = 'page-home';
+	$scope.pageClass = 'page-standard';
 	$scope.token = $window.localStorage['token'];
 });
 

@@ -2,7 +2,6 @@
     bottom:0; 
     padding-top:0px;
     position:absolute; 
-    text-align:center;
     top:50;  
     width:100%; 
 }
@@ -12,7 +11,7 @@
 .page-home      { background:#294F6D; color:#00907c; }
 .page-about     { background:#294F6D; color:#a55400; }
 .page-contact   { background:#294F6D; color:#9e0000; }
-.page-standard   { background:#294F6D; color:#9e0000; }
+.page-standard   { background:#5D4E71; color:#FFFFFF; }
 
 
 /* ANIMATIONS
