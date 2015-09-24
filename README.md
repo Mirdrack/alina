@@ -3,7 +3,7 @@ Alina
 This angular client has been evolving from an basic angular example to a single page application, now Im gonna detail the future requirements in order to convert this application in a client of my Rea project.
 
 The project use this color pallet  
-http://paletton.com/#uid=24t0u0kaRkU4uuH7Jpfddgij2dj  
+http://paletton.com/#uid=13o0u0kiAefEf1tpi87dGn07oMY  
 
 ### To install
   - Clone the project
