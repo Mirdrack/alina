@@ -5,7 +5,6 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 	userService.getUsers(function (response) {
 
 		$scope.users = response.data;
-		console.log('userListController');
 	}, 
 	function (response) {
 

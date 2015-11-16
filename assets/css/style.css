@@ -6,6 +6,11 @@
     width:100%; 
 }
 
+table
+{
+	color: #FFFFFF;
+}
+
 /* PAGES (specific colors for each page)
 ============================================================================= */
 .page-home      { background:#294F6D; color:#00907c; }

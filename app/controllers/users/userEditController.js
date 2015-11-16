@@ -1,11 +1,9 @@
-alinaApp.controller('userEditController', function ($scope, $routeParams, userService) {
+alinaApp.controller('userEditController', function ($scope, $routeParams, $location, userService) {
 
 	$scope.pageClass = 'page-standard';
 
 	$scope.user = userService.getUser(function (response) {
 
-		//We print the data
-		console.log(response.data);
 		$scope.user = response.data;
 	},
 	function (response) {
@@ -15,24 +13,24 @@ alinaApp.controller('userEditController', function ($scope, $routeParams, userSe
 	$routeParams.id);
 
 
-	//$scope.save = userService.updateUser();
-
 	$scope.save = function () {
 
 		userService.updateUser(function (response) 
 		{
-			console.log('==response==');
-			console.log(response);
+			/*
+				TO DO:
+				We should catch the response.message and send it 
+				to the user list on a flash message
+				console.log(response.message);
+			*/
+			$location.path('users');
 		},
 		function (response) {
 
-			console.log('==error==*');
-			console.log(response);
+			$scope.error = response.error;
 		},
 		$routeParams.id,
 		$scope.user);
-
-
 	}
 
 });
