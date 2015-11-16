@@ -25,4 +25,9 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 
 		console.log('delete'); 
 	};
+
+	$scope.new = function () {
+
+		$location.path('users/create');
+	}
 });

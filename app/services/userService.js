@@ -16,6 +16,10 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 		updateUser: function(success, error, id, data) {
 
 			$http.put(urls.BASE + '/user/' + id, data).success(success).error(error);
+		},
+		createUser: function(success, error, data) {
+
+			$http.post(urls.BASE + '/user', data).success(success).error(error);
 		}
 	};
 }]);

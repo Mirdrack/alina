@@ -1,25 +1,20 @@
-Create User Form
-<form>
-	<div class="form-group">
-		<label for="name">Name</label>
-		<input type="name" class="form-control" id="name" placeholder="Name">
+<div class="row card">
+	<div class="col-md-4">
+		<h3>User Data</h3>
+		<form class="form-edit-user" ng-submit="create()">
+			<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
+			Name:
+			<input type="text" ng-model="user.name" class="form-control" placeholder="Name" required>
+			Email:
+			<input type="email" ng-model="user.email" class="form-control" placeholder="Email address" required autofocus>
+			Password:
+			<input type="password" ng-model="user.password" class="form-control" id="password" placeholder="Password">
+			Password confirm:
+			<input type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
+			<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+		</form><!-- /form -->
 	</div>
-	<div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" class="form-control" id="email" placeholder="Email">
+	<div class="col-md-4">
+		<h3>User Groups</h3>
 	</div>
-	<div class="form-group">
-		<label for="password">Password</label>
-		<input type="password" class="form-control" id="password" placeholder="Password">
-	</div>
-	<div class="form-group">
-		<label for="password_confirmation">Password</label>
-		<input type="password_confirmation" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
-	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox"> Remember me
-		</label>
-	</div>
-  <button type="button" class="btn btn-primary" ng-click="create()">Create</button>
-</form>
+</div>

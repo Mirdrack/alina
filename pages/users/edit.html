@@ -1,8 +1,18 @@
-<form class="form-edit-user" ng-submit="save()">
-	<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
-	<input type="hidden" ng-model="user.id">
-	<input type="text" ng-model="user.name" class="form-control" placeholder="Name" required>
-	<input type="email" ng-model="user.email" class="form-control" placeholder="Email address" required autofocus>
+<div class="row card">
+	<div class="col-md-4">
+		<h3>User Data</h3>
+		<form class="form-edit-user" ng-submit="save()">
+			<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
+			<input type="hidden" ng-model="user.id">
+			Name:
+			<input type="text" ng-model="user.name" class="form-control" placeholder="Name" required>
+			Email:
+			<input type="email" ng-model="user.email" class="form-control" placeholder="Email address" required autofocus>
 
-	<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
-</form><!-- /form -->
+			<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+		</form><!-- /form -->
+	</div>
+	<div class="col-md-4">
+		<h3>User Groups</h3>
+	</div>
+</div>
