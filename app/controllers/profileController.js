@@ -2,6 +2,7 @@ alinaApp.controller('profileController', ['$rootScope', '$scope', '$window', 'us
 
 function ($rootScope, $scope, $window, userService) {
 
+	$scope.pageClass = 'page-standard';
 	token = $window.localStorage['token'];
 
 	userService.getProfile(function (response) {

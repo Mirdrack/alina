@@ -1,6 +1,6 @@
 alinaApp.controller('userShowController', function ($scope, $routeParams, userService) {
 
-	$scope.pageClass = 'page-contact';
+	$scope.pageClass = 'page-standard';
 
 	$scope.user = userService.getUser(function (response) {
 

@@ -13,5 +13,9 @@ angular.module('users', []).config(function ($routeProvider) {
 			templateUrl: 'pages/users/create.html',
 			controller: 'userCreateController'
 		})
+		.when('/users/edit/:id', {
+			templateUrl: 'pages/users/edit.html',
+			controller: 'userEditController'
+		})
 		;
 });

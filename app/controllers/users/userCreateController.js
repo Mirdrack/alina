@@ -1,6 +1,6 @@
 alinaApp.controller('userCreateController', function ($scope, userService) {
 
-	$scope.pageClass = 'page-contact';
+	$scope.pageClass = 'page-standard';
 
 	$scope.create = function () {
 

@@ -1,6 +1,6 @@
 alinaApp.controller('userListController', function ($scope, $rootScope, $location, userService) {
 
-	$scope.pageClass = 'page-contact';
+	$scope.pageClass = 'page-standard';
 
 	userService.getUsers(function (response) {
 
@@ -19,7 +19,7 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 
 	$scope.edit = function (id) {
 
-		console.log('edit');
+		$location.path('users/edit/' + id);
 	};
 
 	$scope.delete = function (id) {
