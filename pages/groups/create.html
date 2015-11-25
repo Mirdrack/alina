@@ -1,8 +1,3 @@
-<div class="alert alert-warning" id="alGroup" style="display:none;">
-	<a href="" class="close" onclick="$('#alGroup').hide()">&times;</a>
-	<strong>Warning!</strong> That group already exist!
-</div>
-
 <style>
 	.b-color{
 		color:#777;
@@ -26,7 +21,7 @@
 			</div>
 			<div class="form-group">
 				<label for="basicPerms">Dragg the permissions</label>
-				<ul id="basicPerms" class="list-group b-color">
+				<ul id="basicPerms" class="list-group b-color  dragg-connected">
 					<li class="list-group-item" ng-repeat="perm in basicperm" ng-value="{{ perm.id }}">{{ perm.label }}</li>
 				</ul>
 			</div>
@@ -34,11 +29,9 @@
 		</form>
 	</div>
 	<div class="col-md-6">
-		<ul class="list-group b-color">
-			<li class="list-group-item" ng-repeat="permission in permissions" ng-value="{{ permission.id }}">{{ permission.label }}</li>
+		<h2>Permissions list</h2>
+		<ul id="listPerms" class="list-group b-color dragg-connected">
+			<li class="list-group-item perm-dragg" ng-repeat="permission in permissions" ng-value="{{ permission.id }}">{{ permission.label }}</li>
 		</ul>
 	</div>
-	<script>
-
-	</script>
 </div>

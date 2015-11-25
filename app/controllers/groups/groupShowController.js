@@ -1,4 +1,4 @@
-alinaApp.controller('groupShowController', function ($scope, $location, $routeParams, groupService) {
+alinaApp.controller('groupShowController', function ($scope,$rootScope , $location, $routeParams, groupService) {
 	
 	$scope.pageClass = 'page-standard';
 
@@ -6,11 +6,10 @@ alinaApp.controller('groupShowController', function ($scope, $location, $routePa
 		function (response) {
 
 			$scope.group = response.data
-			//console.log('response.data = ' + response.data);
 		},
 		function (response){
 
-			console.log(response.data);
+			$rootScope.error = response.error;
 		},
 		$routeParams.id
 	);

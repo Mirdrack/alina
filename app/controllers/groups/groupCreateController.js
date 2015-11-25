@@ -11,6 +11,10 @@ alinaApp.controller('groupCreateController',function ($scope, $rootScope, $locat
 			$scope.basicperm.push($scope.permissions[8]);
 			$scope.permissions.splice(5,1);
 			$scope.permissions.splice(8,1);
+
+			$('#listPerms , #basicPerms').sortable({
+				connectWith: '.dragg-connected'
+			}).disableSelection();
 		},
 		function (response) {
 

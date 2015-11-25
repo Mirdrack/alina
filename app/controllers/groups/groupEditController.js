@@ -11,7 +11,7 @@ alinaApp.controller('groupEditController', function ($scope, $routeParams, $loca
 		},
 		function (response) {
 
-			console.log(response.error);
+			$scope.error = response.error
 		}, 
 		$routeParams.id
 	);

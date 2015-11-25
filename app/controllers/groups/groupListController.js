@@ -4,8 +4,7 @@ alinaApp.controller('groupListController', function ($scope, $rootScope, $locati
 
 	groupService.getGroups(function (response) {
 
-		$rootScope.groups = response.data;
-		console.log($rootScope.groups);
+		$scope.groups = response.data;
 	}, 
 	function (response) {
 
@@ -25,10 +24,12 @@ alinaApp.controller('groupListController', function ($scope, $rootScope, $locati
 	$scope.delete = function (id, index) {
 
 		groupService.deleteGroup(function () {
+
 			var row = angular.element(document.querySelector('#row-' + index));
 			row.remove();
 		},
 		function (response) {
+			
 			$scope.error = response.error;
 		},
 		id);
