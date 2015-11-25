@@ -30,8 +30,9 @@ alinaApp.factory('groupService', ['$http', 'urls', '$window', function ($http, u
 
 			$http.get(urls.BASE + '/role/retrieve-permission/' + roleid + '/' + permissionid).success(success).error(error);
 		},
-		getPermissions: function () {
-			
+		getPermissions: function (success, error) {
+
+			$http.get(urls.BASE + '/permission').success(success).error(error);
 		}
 	};
 

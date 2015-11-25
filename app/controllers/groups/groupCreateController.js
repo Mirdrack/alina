@@ -2,13 +2,25 @@ alinaApp.controller('groupCreateController',function ($scope, $rootScope, $locat
 
 	$scope.pageClass = 'page-standard';
 
+	groupService.getPermissions(
+		function (response) {
+
+			$scope.permissions = response.data;
+			$scope.basicperm = [];
+			$scope.basicperm.push($scope.permissions[5]);
+			$scope.basicperm.push($scope.permissions[8]);
+			$scope.permissions.splice(5,1);
+			$scope.permissions.splice(8,1);
+		},
+		function (response) {
+
+			$scope.error = response.error;
+		}
+	);
+
 	$scope.create = function (id) {
 
-		var nGroup = {
-			name:$scope.groupName,
-			label:$scope.groupLabel
-		};
-		groupService.createGroup(nGroup,
+		groupService.createGroup($scope.group,
 			function (response){
 
 				$location.path('/groups');
