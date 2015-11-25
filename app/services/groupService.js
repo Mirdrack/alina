@@ -3,7 +3,6 @@ alinaApp.factory('groupService', ['$http', 'urls', '$window', function ($http, u
 	
 	return {
 		createGroup: function (data, success, error) {
-			console.log(data);
 			
 			$http.post(urls.BASE + '/role', data).success(success).error(error);
 		},
@@ -22,6 +21,17 @@ alinaApp.factory('groupService', ['$http', 'urls', '$window', function ($http, u
 		deleteGroup: function (success, error, id) {
 			
 			$http.delete(urls.BASE + '/role/' + id).success(success).error(error);
+		},
+		givePermission: function (success, error, roleid, permissionid) {
+
+			$http.get(urls.BASE + '/role/give-permission/' + roleid + '/' + permissionid).success(success).error(error);
+		},
+		retrievePermission: function (success, error, roleid, permissionid) {
+
+			$http.get(urls.BASE + '/role/retrieve-permission/' + roleid + '/' + permissionid).success(success).error(error);
+		},
+		getPermissions: function () {
+			
 		}
 	};
 
