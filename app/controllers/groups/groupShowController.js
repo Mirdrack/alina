@@ -6,10 +6,11 @@ alinaApp.controller('groupShowController', function ($scope,$rootScope , $locati
 		function (response) {
 
 			$scope.group = response.data
+			console.log($scope.group);
 		},
 		function (response){
 
-			$rootScope.error = response.error;
+			$scope.error = response.error;
 		},
 		$routeParams.id
 	);

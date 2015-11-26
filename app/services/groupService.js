@@ -4,6 +4,8 @@ alinaApp.factory('groupService', ['$http', 'urls', '$window', function ($http, u
 	return {
 		createGroup: function (data, success, error) {
 			
+			console.log('creating');
+			console.log(data);
 			$http.post(urls.BASE + '/role', data).success(success).error(error);
 		},
 		getGroup: function (success, error, id) {
