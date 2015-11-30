@@ -1,0 +1,27 @@
+<form ng-submit="create()">
+	<table class="table">
+		<thead>
+			<tr>
+				<th colspan="2"><h1>Create new group</h1></th>
+			</tr>
+		</thead>
+		<tr>
+			<td>Name</td>
+			<td><input type="text" ng-model="groupName" class="form-control" required="string"></td>
+		</tr>
+		<tr>
+			<td>Label</td>
+			<td><input type="text" ng-model="groupLabel" class="form-control"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+			</td>
+		</tr>
+	</table>
+</form>
+<div class="alert alert-warning" id="alGroup" style="display:none;">
+	<a href="" class="close" onclick="$('#alGroup').hide()">&times;</a>
+	<strong>Warning!</strong> That group already exist!
+</div>
