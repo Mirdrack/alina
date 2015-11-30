@@ -55,6 +55,7 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 	BASE_API: 'http://api.rea.app/v1'
 })
 .run(function ($rootScope, $location, $window) {
+
 	$rootScope.$on('$routeChangeStart', function (event, next) {
 		if($window.localStorage['token'] == null) {
 			if(next.templateUrl === 'partials/restricted.html') {
