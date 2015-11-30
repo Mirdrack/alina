@@ -1,4 +1,4 @@
-var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate', 'users']);
+var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate', 'users', 'groups']);
 
 
 

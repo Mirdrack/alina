@@ -1,0 +1,30 @@
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th colspan="4"><h1>Groups list</h1></th>
+				<th><a class="btn btn-default" ng-click="add()" role="button"><i class="fa fa-plus fa-2"></i></a></th>
+			</tr>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Label</th>
+				<th>Create date</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="group in groups track by $index" id="row-{{ $index }}">
+				<td>{{ group.id }}</td>
+				<td>{{ group.name }}</td>
+				<td>{{ group.label }}</td>
+				<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+				<td>
+					<a class="btn btn-default" ng-click="view(group.id)" role="button">View</a>
+					<a class="btn btn-default" ng-click="edit(group.id)" role="button">Edit</a>
+					<a class="btn btn-danger" ng-click="delete(group.id, $index)" role="button">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
