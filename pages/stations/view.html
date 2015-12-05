@@ -1,0 +1,56 @@
+<h1>{{ station.name }}</h1>
+
+<h4>Caracteristicas Generales</h4>
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Latitud</td>
+				<td>25.751</td>
+			</tr>
+			<tr>
+				<td>Longitud</td>
+				<td>25.751</td>
+			</tr>
+			<tr>
+				<td>Bomba</td>
+				<td>Danfus</td>
+			</tr>
+			<tr>
+				<td>Descripci&oacute;n</td>
+				<td>Loren Ipsum...</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Dynamic Level</th>
+				<th>Voltage</th>
+				<th>Current</th>
+				<th>Power</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="read in station.reads | limitTo:5">
+			<tr>
+				<td>{{ read.id }}</td>
+				<td>{{ read.dynamic_level }} m</td>
+				<td>{{ read.voltage }} V</td>
+				<td>{{ read.current }} A</td>
+				<td>{{ read.power }} HP</td>
+				<td>{{ read.created_at }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
