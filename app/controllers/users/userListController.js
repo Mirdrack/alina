@@ -23,7 +23,7 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 
 	$scope.delete = function (id) {
 
-		console.log('delete'); 
+		console.log('delete');
 	};
 
 	$scope.new = function () {
