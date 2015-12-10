@@ -1,4 +1,4 @@
-alinaApp.controller('userListController', function ($scope, $rootScope, $location, userService) {
+alinaApp.controller('userListController', function ($scope, $rootScope, $location, userService, dialogs) {
 
 	$scope.pageClass = 'page-standard';
 
@@ -22,8 +22,17 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 	};
 
 	$scope.delete = function (id) {
-
+		
 		console.log('delete'); 
+		var confirmDialog = dialogs.confirm('Delete User', 'Are you sure to delete the user', {size: 'sm'});
+		confirmDialog.result.then(
+			function(btn) {
+						
+				console.log('We call to service delete');
+			},
+			function(btn) {
+				console.log('We do nothing');
+			});
 	};
 
 	$scope.new = function () {

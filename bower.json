@@ -20,6 +20,7 @@
     "bootstrap": "~3.3.5",
     "fontawesome": "~4.3.0",
     "ngstorage": "~0.3.6",
-    "jquery-ui" : "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "angular-dialog-service": "~5.2.8"
   }
 }

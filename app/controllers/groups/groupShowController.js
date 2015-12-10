@@ -8,7 +8,7 @@ alinaApp.controller('groupShowController', function ($scope,$rootScope , $locati
 			$scope.group = response.data
 			console.log($scope.group);
 		},
-		function (response){
+		function (response) {
 
 			$scope.error = response.error;
 		},
@@ -27,6 +27,7 @@ alinaApp.controller('groupShowController', function ($scope,$rootScope , $locati
 			$location.path('/groups');
 		},
 		function (response) {
+
 			$scope.error = response.error;
 		},
 		id);
