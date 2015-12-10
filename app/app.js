@@ -1,7 +1,5 @@
 var alinaApp = angular.module('alinaApp', ['ngRoute', 'ngAnimate', 'dialogs.main', 'ui.bootstrap', 'users', 'groups']);
 
-
-
 alinaApp.controller('navbarController', function ($scope, authService, $window) {
 
 	$scope.logout = function () {
