@@ -31,12 +31,10 @@
 		<td>Creation date</td>
 		<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
 	</tr>
-	<tr>
+	<tr data-type="scroll">
 		<td>Permissions</td>
 		<td>
-			<ul id="groupPerms" class="list-group b-color">
-				<li class="list-group-item" ng-repeat="perm in group.permissions" ng-value="{{ perm.id }}">{{ perm.label }}</li>
-			</ul>
+			<div ng-repeat="perm in group.permissions" ng-value="{{ perm.id }}">{{ perm.label }}</div>
 		</td>
 	</tr>
 </table>
