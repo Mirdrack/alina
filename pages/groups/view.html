@@ -1,8 +1,18 @@
+<style>
+	.b-color{
+		color:#777;
+		min-height: 50px;
+	}
+</style>
+
 <table class="table">
 	<thead>
 		<tr>
 			<th><h1>View group</h1></th>
-			<th></th>
+			<th>
+				<a class="btn btn-default" ng-click="edit(group.id)" role="button">Edit</a>
+				<a class="btn btn-danger" ng-click="delete(group.id)" role="button">Delete</a>
+			</th>
 		</tr>
 	</thead>
 	<tr>
@@ -22,10 +32,11 @@
 		<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
 	</tr>
 	<tr>
-		<td></td>
+		<td>Permissions</td>
 		<td>
-			<a class="btn btn-default" ng-click="edit(group.id)" role="button">Edit</a>
-			<a class="btn btn-danger" ng-click="delete(group.id)" role="button">Delete</a>
+			<ul id="groupPerms" class="list-group b-color">
+				<li class="list-group-item" ng-repeat="perm in group.permissions" ng-value="{{ perm.id }}">{{ perm.label }}</li>
+			</ul>
 		</td>
 	</tr>
 </table>
