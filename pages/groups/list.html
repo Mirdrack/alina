@@ -2,8 +2,12 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th colspan="4"><h1>Groups list</h1></th>
-				<th><a class="btn btn-default" ng-click="add()" role="button"><i class="fa fa-plus fa-2"></i></a></th>
+				<th colspan="4"><h1>Groups</h1></th>
+				<th>
+					<a class="btn btn-default" ng-click="add()" role="button">
+						<i class="fa fa-plus fa-2"></i>&nbsp;New
+					</a>
+				</th>
 			</tr>
 			<tr>
 				<th>ID</th>
@@ -20,9 +24,15 @@
 				<td>{{ group.label }}</td>
 				<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
 				<td>
-					<a class="btn btn-default" ng-click="view(group.id)" role="button">View</a>
-					<a class="btn btn-default" ng-click="edit(group.id)" role="button">Edit</a>
-					<a class="btn btn-danger" ng-click="delete(group.id, $index)" role="button">Delete</a>
+					<a class="btn btn-default" ng-click="view(group.id)" role="button">
+						<i class="fa fa-eye"></i>&nbsp;View
+					</a>
+					<a class="btn btn-default" ng-click="edit(group.id)" role="button">
+						<i class="fa fa-pencil"></i>&nbsp;Edit
+					</a>
+					<a class="btn btn-danger" ng-click="delete(group.id, $index)" role="button">
+						<i class="fa fa-trash"></i>&nbsp;Delete
+					</a>
 				</td>
 			</tr>
 		</tbody>

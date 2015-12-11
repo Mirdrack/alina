@@ -1,4 +1,5 @@
-alinaApp.controller('groupListController', function ($scope, $rootScope, $location, $window, groupService, userService, dialogs) {
+alinaApp.controller('groupListController', 
+function ($scope, $rootScope, $location, $window, groupService, userService, dialogs) {
 
 	$scope.pageClass = 'page-standard';
 

@@ -57,9 +57,7 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 .run(function ($rootScope, $location, $window) {
 	$rootScope.$on('$routeChangeStart', function (event, next) {
 		if($window.localStorage['token'] == null) {
-			if(next.templateUrl === 'partials/restricted.html') {
-				$location.path('/signup');
-			}
+			$location.path('/signin');
 		}
 	});
 
