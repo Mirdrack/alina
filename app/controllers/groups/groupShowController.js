@@ -1,4 +1,4 @@
-alinaApp.controller('groupShowController', function ($scope,$rootScope , $location, $routeParams, groupService) {
+alinaApp.controller('groupShowController', function ($scope,$rootScope , $location, $routeParams, groupService, dialogs) {
 	
 	$scope.pageClass = 'page-standard';
 
@@ -8,7 +8,7 @@ alinaApp.controller('groupShowController', function ($scope,$rootScope , $locati
 			$scope.group = response.data
 			console.log($scope.group);
 		},
-		function (response){
+		function (response) {
 
 			$scope.error = response.error;
 		},
@@ -22,13 +22,24 @@ alinaApp.controller('groupShowController', function ($scope,$rootScope , $locati
 
 	$scope.delete = function (id) {
 
-		groupService.deleteGroup(function () {
+		var confirmDialog = dialogs.confirm('Delete Group', 'Are you sure to delete this group?', {size: 'sm'});
+		confirmDialog.result.then(
+			function(btn) {
+						
+				groupService.deleteGroup(function () {
 
-			$location.path('/groups');
-		},
-		function (response) {
-			$scope.error = response.error;
-		},
-		id);
+					$location.path('/groups');
+				},
+				function (response) {
+					
+					$scope.error = response.error;
+				},
+				id);
+			},
+			function(btn) {
+
+				console.log('We do nothing');
+			}
+		);
 	};
 });
