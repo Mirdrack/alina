@@ -22,7 +22,7 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 	};
 
 	$scope.delete = function (id) {
-
+		
 		console.log('delete'); 
 		var confirmDialog = dialogs.confirm('Delete User', 'Are you sure to delete the user', {size: 'sm'});
 		confirmDialog.result.then(
