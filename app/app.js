@@ -21,7 +21,7 @@ alinaApp.controller('mainController', function ($scope, $window) {
 alinaApp.controller('aboutController', function ($scope) {
 
 	$scope.message = 'Contact page';
-	$scope.pageClass = '';
+	$scope.pageClass = 'page-standard';
 });
 
 alinaApp.controller('contactController', function ($scope) {
