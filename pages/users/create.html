@@ -1,3 +1,13 @@
+<style>
+	.b-color{
+		color:#777;
+		min-height: 50px;
+	}
+	.list-group-item{
+		height: 40px;
+	}
+</style>
+
 <div class="row card">
 	<div class="col-md-4">
 		<h3>User Data</h3>
@@ -15,6 +25,17 @@
 		</form><!-- /form -->
 	</div>
 	<div class="col-md-4">
-		<h3>User Groups</h3>
+		<div class="form-group">
+				<h3>User Groups</h3>
+				<ul id="groupPerms" class="list-group b-color  dragg-connected">
+					<li class="list-group-item" ng-repeat="perm in basicperm" ng-value="{{ perm.id }}">{{ perm.label }}</li>
+				</ul>
+			</div>
+	</div>
+	<div class="col-md-4">
+		<h3>Groups list</h3>
+		<ul id="listPerms" class="list-group b-color dragg-connected">
+			<li class="list-group-item perm-dragg" ng-repeat="permission in permissions" ng-value="{{ permission.id }}">{{ permission.label }}</li>
+		</ul>
 	</div>
 </div>
