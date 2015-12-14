@@ -43,6 +43,7 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 
 					if(response.status == 401 || response.status == 403) {
 						$location.path('/signin');
+						$window.localStorage.removeItem('token');
 					}
 					return $q.reject(response);
 				}
@@ -60,5 +61,3 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 			$location.path('/signin');
 		}
 	});
-
-});

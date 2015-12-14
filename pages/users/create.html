@@ -27,15 +27,15 @@
 	<div class="col-md-4">
 		<div class="form-group">
 				<h3>User Groups</h3>
-				<ul id="groupPerms" class="list-group b-color  dragg-connected">
-					<li class="list-group-item" ng-repeat="perm in basicperm" ng-value="{{ perm.id }}">{{ perm.label }}</li>
+				<ul id="userGroups" class="list-group b-color  dragg-connected">
+					<li class="list-group-item" ng-repeat="group in basicGroups" ng-value="{{ group.id }}">{{ group.label }}</li>
 				</ul>
 			</div>
 	</div>
 	<div class="col-md-4">
-		<h3>Groups list</h3>
-		<ul id="listPerms" class="list-group b-color dragg-connected">
-			<li class="list-group-item perm-dragg" ng-repeat="permission in permissions" ng-value="{{ permission.id }}">{{ permission.label }}</li>
+		<h3>Available groups</h3>
+		<ul id="availableGroups" class="list-group b-color dragg-connected">
+			<li class="list-group-item perm-dragg" ng-repeat="group in groups" ng-value="{{ group.id }}">{{ group.label }}</li>
 		</ul>
 	</div>
 </div>
