@@ -25,5 +25,13 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 			
 			$http.delete(urls.BASE + '/user/' + id).success(success).error(error);
 		},
+		giveRole: function (success, error, userId, roleId){
+
+			$htpp.post(url.BASE + '/user/give-role/' + userId + '/' + roleId).success(success).error(error);
+		},
+		retrieveRole: function (success, error, userId, roleId){
+
+			$htpp.post(url.BASE + '/user/retrieve-role/' + userId + '/' + roleId).success(success).error(error);	
+		}
 	};
 }]);
