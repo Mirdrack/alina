@@ -20,6 +20,10 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 		createUser: function(success, error, data) {
 
 			$http.post(urls.BASE + '/user', data).success(success).error(error);
-		}
+		},
+		deleteUser: function (success, error, id) {
+			
+			$http.delete(urls.BASE + '/user/' + id).success(success).error(error);
+		},
 	};
 }]);

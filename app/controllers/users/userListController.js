@@ -24,13 +24,23 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 	$scope.delete = function (id) {
 		
 		console.log('delete'); 
-		var confirmDialog = dialogs.confirm('Delete User', 'Are you sure to delete the user', {size: 'sm'});
+		var confirmDialog = dialogs.confirm('Delete User', 'Are you sure to delete the user?', {size: 'sm'});
 		confirmDialog.result.then(
 			function(btn) {
 						
-				console.log('We call to service delete');
+				userService.deleteUser(function () {
+
+					var row = angular.element(document.querySelector('#row-' + index));
+					row.remove();
+				},
+				function (response) {
+					
+					$scope.error = response.error;
+				},
+				id);
 			},
 			function(btn) {
+
 				console.log('We do nothing');
 			});
 	};
