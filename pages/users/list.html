@@ -1,7 +1,9 @@
 <h1>Users</h1>
-<a class="btn btn-default" ng-click="new()" role="button">
-	<i class="fa fa-plus"></i>&nbsp;New
-</a>
+<div class="new-btn-div">
+	<a class="btn btn-default" ng-click="new()" role="button">
+		<i class="fa fa-plus"></i>&nbsp;New
+	</a>	
+</div>
 <div class="table-responsive">
 	<table class="table">
 	    <thead>
@@ -13,7 +15,7 @@
 	    	</tr>
 	    </thead>
 	    <tbody>
-	    	<tr ng-repeat="user in users">
+	    	<tr ng-repeat="user in users track by $index" id="row-{{ $index }}">
 	    		<td>{{ user.id }}</td>
 	    		<td>{{ user.name }}</td>
 	    		<td>{{ user.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
