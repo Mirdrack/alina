@@ -5,7 +5,7 @@ function ($scope, $rootScope, authService, $window) {
 	
 	succesAuth = function (response) {
 
-		$window.localStorage['token'] = response.token;
+		$window.localStorage['token'] = response.data.token;
         $window.location = '/';
 	};
 
