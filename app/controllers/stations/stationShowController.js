@@ -6,7 +6,6 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 		function (response) {
 
 			$scope.station = response.data;
-			console.log($scope.station.reads);
 		},
 		function (response){
 
@@ -16,4 +15,14 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 	);
 
 	console.log('stationShowController');
+	var socket = io('http://localhost:8000');
+	console.log(typeof(socket));
+
+	socket.on('new-read-server', function (data) {
+
+		$scope.station.reads.pop();
+		$scope.station.reads.unshift(data.data);
+		$scope.$apply();
+	});
+
 });

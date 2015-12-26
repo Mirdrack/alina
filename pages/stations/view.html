@@ -42,14 +42,14 @@
 				<th>Date</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat="read in station.reads | limitTo:5">
+		<tbody ng-repeat="read in station.reads track by $index | orderBy:'-id'" id="row-{{ $index }}">
 			<tr>
 				<td>{{ read.id }}</td>
 				<td>{{ read.dynamic_level }} m</td>
 				<td>{{ read.voltage }} V</td>
 				<td>{{ read.current }} A</td>
 				<td>{{ read.power }} HP</td>
-				<td>{{ read.created_at }}</td>
+				<td>{{ read.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
 			</tr>
 		</tbody>
 	</table>
