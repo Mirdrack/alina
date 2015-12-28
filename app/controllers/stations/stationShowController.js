@@ -15,7 +15,7 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 	);
 
 	console.log('stationShowController');
-	var socket = io('http://localhost:8000');
+	var socket = io(urls.BASE_NODE);
 	console.log(typeof(socket));
 
 	socket.on('new-read-server', function (data) {

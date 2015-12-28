@@ -24,7 +24,8 @@ alinaApp.config(function ($routeProvider, $httpProvider) {
 })
 .constant('urls', {
 	BASE: 'http://rea.app',
-	BASE_API: 'http://api.rea.app/v1'
+	BASE_API: 'http://api.rea.app/v1',
+	BASE_NODE: 'htpp://samantha.app:8000'
 })
 .run(function ($rootScope, $location, $window) {
 	$rootScope.$on('$routeChangeStart', function (event, next) {
