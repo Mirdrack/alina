@@ -1,4 +1,4 @@
-alinaApp.controller('stationShowController', function ($scope, $rootScope , $location, $routeParams, stationService) { 
+alinaApp.controller('stationShowController', function ($scope, $rootScope , $location, $routeParams, stationService, urls) { 
 	
 	$scope.pageClass = 'page-standard';
 
