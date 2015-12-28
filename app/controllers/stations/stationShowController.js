@@ -14,9 +14,12 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 		$routeParams.id
 	);
 
-	console.log('stationShowController');
+	$scope.report = function (id) {
+
+		$location.path('reports/make/' + id);
+	};
+
 	var socket = io('http://localhost:8000');
-	console.log(typeof(socket));
 
 	socket.on('new-read-server', function (data) {
 

@@ -1,0 +1,56 @@
+
+<h1>Generate Report</h1>
+
+<div class="col-md-4">
+	
+	<div class="form-group">
+		<select ng-model="stationId" ng-options="station.id as station.name for station in stations" class="form-control">
+		    <option value="">Select Station</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<select ng-model="reportType" class="form-control">
+			<option value="">Select type</option>
+			<option value="day">By Day</option>
+			<option value="month">By Month</option>
+			<option value="year">By Year</option>
+		</select>
+	</div>
+
+	<div ng-if="reportType == 'day'" class="form-group">
+	 	BY DAY INPUT
+	</div>
+
+	<div class="form-group">
+		<select ng-if="reportType == 'month'" ng-model="month" class="form-control">
+			<option value="">Select Month</option>
+			<option value="1">January</option>
+			<option value="2">February</option>
+			<option value="3">March</option>
+			<option value="4">April</option>
+			<option value="5">May</option>
+			<option value="6">June</option>
+			<option value="7">July</option>
+			<option value="8">August</option>
+			<option value="9">September</option>
+			<option value="10">Octuber</option>
+			<option value="11">November</option>
+			<option value="12">December</option>
+		</select>
+		<select ng-if="reportType == 'year'" ng-model="year" class="form-control" >
+			<option value="">Select Year</option>
+			<option value="2016">2016</option>
+			<option value="2017">2017</option>
+			<option value="2018">2018</option>
+			<option value="2019">2019</option>
+			<option value="2020">2020</option>
+		</select>
+	</div>
+	
+	<div class="new-btn-div">
+		<a class="btn btn-default" ng-click="generate()" role="button">
+			<i class="fa fa-pie-chart"></i>&nbsp;Generate
+		</a>	
+	</div>
+</div>
