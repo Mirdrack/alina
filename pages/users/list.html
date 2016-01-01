@@ -1,11 +1,11 @@
 <h1>Users</h1>
-<div class="new-btn-div">
-	<a class="btn btn-default" ng-click="new()" role="button">
+<div class="row">
+	<a class="btn btn-default" ng-click="new()">
 		<i class="fa fa-plus"></i>&nbsp;New
-	</a>	
+	</a>
 </div>
-<div class="table-responsive">
-	<table class="table">
+<div class="row">
+	<table class="bordered highlight responsive-table">
 	    <thead>
 	    	<tr>
 		    	<th>ID</th>
@@ -20,17 +20,32 @@
 	    		<td>{{ user.name }}</td>
 	    		<td>{{ user.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
 	    		<td>
-	    			<a class="btn btn-default" ng-click="view(user.id)" role="button">
+	    			<a class="btn btn-default" ng-click="view(user.id)" >
 	    				<i class="fa fa-eye"></i>&nbsp;View
 	    			</a>
-	    			<a class="btn btn-default" ng-click="edit(user.id)" role="button">
+	    			<a class="btn btn-default" ng-click="edit(user.id)">
 	    				<i class="fa fa-pencil"></i>&nbsp;Edit
 	    			</a>
-	    			<a class="btn btn-danger" ng-click="delete(user.id)" role="button">
-	    				<i class="fa fa-trash"></i>&nbsp;Delete
-	    			</a>
+
+	    			<a class=" btn modal-trigger" href="#delete-modal" ng-click="setIdToDelete($event, user.id)">
+						<i class="fa fa-trash"></i>&nbsp;Delete
+					</a>
 	    		</td>
 	    	</tr>
 	    </tbody>
 	</table>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="delete-modal" class="modal">
+    <div class="modal-content">
+		<h4>Delete User</h4>
+		<p>{{ idToDelete }}</p>
+		<p>Are you sure about to delete the user?</p>
+    </div>
+    <div class="modal-footer">
+            <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat" ng-click="closeModal($event)">Disagree</a>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="delete($event)">Agree</a>
+	</div>
 </div>

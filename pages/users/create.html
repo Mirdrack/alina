@@ -1,15 +1,17 @@
-<style>
-	.b-color{
-		color:#777;
-		min-height: 50px;
+<style type="text/css">
+	.list-item {
+		margin-top: 5px;
 	}
-	.list-group-item{
-		height: 40px;
-	}
-</style>
 
-<div class="row card">
-	<div class="col-md-4">
+	.groups-list
+	{
+		min-height: 150px;
+	}
+
+</style>
+<h1>New User</h1>
+<div class="row">
+	<div class="col s4">
 		<h3>User Data</h3>
 		<form class="form-edit-user" ng-submit="create()">
 			<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
@@ -22,20 +24,24 @@
 			Password confirm:
 			<input type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
 			<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
-		</form><!-- /form -->
+		</form>
 	</div>
-	<div class="col-md-4">
+	<div class="col s4">
 		<div class="form-group">
 				<h3>User Groups</h3>
-				<ul id="userGroups" class="list-group b-color  dragg-connected">
-					<li class="list-group-item" ng-repeat="group in basicGroups" ng-value="{{ group.id }}">{{ group.label }}</li>
+				<ul id="userGroups" class="dragg-connected groups-list">
+					<li class="card-panel teal lighten-2 list-item" ng-repeat="group in basicGroups" ng-value="{{ group.id }}">
+						{{ group.label }}
+					</li>
 				</ul>
 			</div>
 	</div>
-	<div class="col-md-4">
-		<h3>Available groups</h3>
-		<ul id="availableGroups" class="list-group b-color dragg-connected">
-			<li class="list-group-item perm-dragg" ng-repeat="group in groups" ng-value="{{ group.id }}">{{ group.label }}</li>
+	<div class="col s4">
+		<h3>Groups</h3>
+		<ul id="availableGroups" class="dragg-connected groups-list">
+			<li class="card-panel teal lighten-2 perm-dragg list-item" ng-repeat="group in groups" ng-value="{{ group.id }}">
+				{{ group.label }}
+			</li>
 		</ul>
 	</div>
 </div>
