@@ -1,4 +1,4 @@
-alinaApp.controller('stationShowController', function ($scope, $rootScope , $location, $routeParams, stationService) { 
+alinaApp.controller('stationShowController', function ($scope, $rootScope , $location, $routeParams, stationService, urls) { 
 	
 	$scope.pageClass = 'page-standard';
 
@@ -14,12 +14,9 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 		$routeParams.id
 	);
 
-	$scope.report = function (id) {
-
-		$location.path('reports/make/' + id);
-	};
-
-	var socket = io('http://localhost:8000');
+	console.log('stationShowController');
+	var socket = io(urls.BASE_NODE);
+	console.log(typeof(socket));
 
 	socket.on('new-read-server', function (data) {
 
