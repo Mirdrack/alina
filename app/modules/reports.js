@@ -5,7 +5,7 @@ angular.module('reports', []).config(function ($routeProvider) {
 			templateUrl: 'pages/reports/make.html',
 			controller: 'reportMakeController'
 		})
-		.when('/reports/show/:id', {
+		.when('/reports/show/:stationId/:start/:end', {
 			templateUrl: 'pages/reports/show.html',
 			controller: 'reportShowController'
 		})

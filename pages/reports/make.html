@@ -1,56 +1,81 @@
-
 <h1>Generate Report</h1>
-
-<div class="col-md-4">
-	
-	<div class="form-group">
-		<select ng-model="stationId" ng-options="station.id as station.name for station in stations" class="form-control">
+<div class="row">
+	<div class="card red darken-3" data-ng-show="error">
+		<div class="card-content white-text">
+			<span class="card-title">Error</span>
+			<p>{{ error }}</p>
+		</div>
+    </div>
+</div>
+<div class="row">
+	<div class="input-field col s4">
+		<select 
+			ng-model="report.stationId" 
+			ng-options="station.id as station.name for station in stations" 
+			material-select
+			watch
+		>
 		    <option value="">Select Station</option>
 		</select>
-	</div>
-
-	<div class="form-group">
-		<select ng-model="reportType" class="form-control">
+		<select 
+			ng-model="report.type"
+			ng-options="lapseOption.value as lapseOption.label for lapseOption in report.lapseOptions" 
+			material-select
+			watch
+		>
 			<option value="">Select type</option>
-			<option value="day">By Day</option>
-			<option value="month">By Month</option>
-			<option value="year">By Year</option>
 		</select>
 	</div>
+	<div class="row">
+		<div class="col s4 push-s1">
+			<div ng-if="report.type == 'day'" class="input-field">
+			 	
+				<label for="report-day">Report Day</label>
+				<input input-date
+					type="text"
+				    name="created"
+				    id="report-day"
+				    ng-model="report.day"
+				    container="body"
+				    format="dd/mm/yyyy"
+				    months-full="{{ month }}"
+				    months-short="{{ monthShort }}"
+				    weekdays-full="{{ weekdaysFull }}"
+				    weekdays-short="{{ weekdaysShort }}"
+				    weekdays-letter="{{ weekdaysLetter }}"
+				    max="{{ maxDate }}"
+				/>
 
-	<div ng-if="reportType == 'day'" class="form-group">
-	 	BY DAY INPUT
-	</div>
+			</div>
+			
+			<div ng-if="report.type == 'month'" class="input-field">
+				<select 
+					ng-model="report.month"
+					ng-options="monthOption.value as monthOption.label for monthOption in report.monthOptions"
+					material-select
+					watch
+				>
+					<option value="">Select Month</option>
+				</select>
+			</div>
 
-	<div class="form-group">
-		<select ng-if="reportType == 'month'" ng-model="month" class="form-control">
-			<option value="">Select Month</option>
-			<option value="1">January</option>
-			<option value="2">February</option>
-			<option value="3">March</option>
-			<option value="4">April</option>
-			<option value="5">May</option>
-			<option value="6">June</option>
-			<option value="7">July</option>
-			<option value="8">August</option>
-			<option value="9">September</option>
-			<option value="10">Octuber</option>
-			<option value="11">November</option>
-			<option value="12">December</option>
-		</select>
-		<select ng-if="reportType == 'year'" ng-model="year" class="form-control" >
-			<option value="">Select Year</option>
-			<option value="2016">2016</option>
-			<option value="2017">2017</option>
-			<option value="2018">2018</option>
-			<option value="2019">2019</option>
-			<option value="2020">2020</option>
-		</select>
+			<div ng-if="report.type == 'month' || report.type == 'year'" class="input-field">
+				<select 
+					ng-model="report.year"
+					ng-options="yearOption.value as yearOption.label for yearOption in report.yearOptions" 
+					material-select
+					watch
+				>
+					<option value="">Select Year</option>
+				</select>
+			</div>		
+		</div>
 	</div>
-	
-	<div class="new-btn-div">
-		<a class="btn btn-default" ng-click="generate()" role="button">
-			<i class="fa fa-pie-chart"></i>&nbsp;Generate
-		</a>	
+</div>
+<div class="row">
+	<div class="col s4 push-s7">
+		<button class="btn waves-effect waves-light" type="button" ng-click="generate()">
+			<i class="fa fa-area-chart"></i> Generate
+		</button>
 	</div>
 </div>
