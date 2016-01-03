@@ -1,0 +1,81 @@
+<h1>Generate Report</h1>
+<div class="row">
+	<div class="card red darken-3" data-ng-show="error">
+		<div class="card-content white-text">
+			<span class="card-title">Error</span>
+			<p>{{ error }}</p>
+		</div>
+    </div>
+</div>
+<div class="row">
+	<div class="input-field col s4">
+		<select 
+			ng-model="report.stationId" 
+			ng-options="station.id as station.name for station in stations" 
+			material-select
+			watch
+		>
+		    <option value="">Select Station</option>
+		</select>
+		<select 
+			ng-model="report.type"
+			ng-options="lapseOption.value as lapseOption.label for lapseOption in report.lapseOptions" 
+			material-select
+			watch
+		>
+			<option value="">Select type</option>
+		</select>
+	</div>
+	<div class="row">
+		<div class="col s4 push-s1">
+			<div ng-if="report.type == 'day'" class="input-field">
+			 	
+				<label for="report-day">Report Day</label>
+				<input input-date
+					type="text"
+				    name="created"
+				    id="report-day"
+				    ng-model="report.day"
+				    container="body"
+				    format="dd/mm/yyyy"
+				    months-full="{{ month }}"
+				    months-short="{{ monthShort }}"
+				    weekdays-full="{{ weekdaysFull }}"
+				    weekdays-short="{{ weekdaysShort }}"
+				    weekdays-letter="{{ weekdaysLetter }}"
+				    max="{{ maxDate }}"
+				/>
+
+			</div>
+			
+			<div ng-if="report.type == 'month'" class="input-field">
+				<select 
+					ng-model="report.month"
+					ng-options="monthOption.value as monthOption.label for monthOption in report.monthOptions"
+					material-select
+					watch
+				>
+					<option value="">Select Month</option>
+				</select>
+			</div>
+
+			<div ng-if="report.type == 'month' || report.type == 'year'" class="input-field">
+				<select 
+					ng-model="report.year"
+					ng-options="yearOption.value as yearOption.label for yearOption in report.yearOptions" 
+					material-select
+					watch
+				>
+					<option value="">Select Year</option>
+				</select>
+			</div>		
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col s4 push-s7">
+		<button class="btn waves-effect waves-light" type="button" ng-click="generate()">
+			<i class="fa fa-area-chart"></i> Generate
+		</button>
+	</div>
+</div>

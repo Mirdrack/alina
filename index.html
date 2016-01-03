@@ -1,19 +1,25 @@
 <html ng-app="alinaApp">
 <head>
+    <meta charset="utf-8">
 	<title>:: Alina ::</title>
+    <script type="text/javascript" src="bower_components/jquery-1.7.2.min/index.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
-	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="bower_components/ngstorage/ngStorage.js"></script>
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="bower_components/socket.io-client/socket.io.js"></script>
-    <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.js"></script>
+    <script type="text/javascript" src="bower_components/angular-materialize/src/angular-materialize.js"></script>
+    <script type="text/javascript" src="bower_components/d3/d3.js"></script>
+    <script type="text/javascript" src="bower_components/nvd3/build/nv.d3.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css">
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 
     <script type="text/javascript" src="app/app.js"></script>
@@ -23,6 +29,7 @@
     <script type="text/javascript" src="app/modules/users.js"></script>
     <script type="text/javascript" src="app/modules/groups.js"></script>
     <script type="text/javascript" src="app/modules/stations.js"></script>
+    <script type="text/javascript" src="app/modules/reports.js"></script>
     <script type="text/javascript" src="app/controllers/sessionController.js"></script>
     <script type="text/javascript" src="app/controllers/profileController.js"></script>
     <script type="text/javascript" src="app/controllers/users/userListController.js"></script>
@@ -34,6 +41,8 @@
     <script type="text/javascript" src="app/controllers/groups/groupCreateController.js"></script>
     <script type="text/javascript" src="app/controllers/groups/groupShowController.js"></script>
     <script type="text/javascript" src="app/controllers/stations/stationShowController.js"></script>
+    <script type="text/javascript" src="app/controllers/reports/reportMakeController.js"></script>
+    <script type="text/javascript" src="app/controllers/reports/reportShowController.js"></script>
     <script type="text/javascript" src="app/services/authService.js"></script>
 	<script type="text/javascript" src="app/services/userService.js"></script>
     <script type="text/javascript" src="app/services/groupService.js"></script>

@@ -5,7 +5,9 @@ var alinaApp = angular.module('alinaApp', [
 	'sessions', 
 	'users', 
 	'groups',
-	'stations'
+	'stations',
+	'reports',
+	'ui.materialize',
 ]);
 
 alinaApp.controller('navbarController', function ($scope, $window, authService, userService) {

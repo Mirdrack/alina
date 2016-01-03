@@ -25,4 +25,9 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 		$scope.$apply();
 	});
 
+	$scope.makeReport = function (id) {
+
+		$location.path('reports/make/' + id);
+	}
+
 });
