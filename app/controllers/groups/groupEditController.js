@@ -11,7 +11,6 @@ alinaApp.controller('groupEditController', function ($scope, $routeParams, $loca
 			function (response) {
 
 				$scope.group = response.data;
-				console.log($scope.permissions);
 				for(var x = 0;$scope.permissions.length < x; x++) {
 					var o = jQuery.inArray($scope.permissions[x], $scope.group.permissions);
 					if(o > -1) {
