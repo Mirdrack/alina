@@ -1,0 +1,60 @@
+<h1>{{ station.name }}</h1>
+<div class="row">
+	<table class="bordered responsive-table">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Latitud</td>
+				<td>25.751</td>
+			</tr>
+			<tr>
+				<td>Longitud</td>
+				<td>25.751</td>
+			</tr>
+			<tr>
+				<td>Bomba</td>
+				<td>Danfus</td>
+			</tr>
+			<tr>
+				<td>Descripci&oacute;n</td>
+				<td>Loren Ipsum...</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<a class="btn btn-default" ng-click="makeReport(station.id)">
+		<i class="fa fa-plus"></i>&nbsp;Report
+	</a>
+</div>
+
+<div class="row">
+	<table class="bordered highlight responsive-table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Dynamic Level</th>
+				<th>Voltage</th>
+				<th>Current</th>
+				<th>Power</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="read in station.reads track by $index | orderBy:'-id'" id="row-{{ $index }}">
+			<tr>
+				<td>{{ read.id }}</td>
+				<td>{{ read.dynamic_level }} m</td>
+				<td>{{ read.voltage }} V</td>
+				<td>{{ read.current }} A</td>
+				<td>{{ read.power }} HP</td>
+				<td>{{ read.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

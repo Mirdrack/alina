@@ -1,12 +1,13 @@
 var alinaApp = angular.module('alinaApp', [
 	'ngRoute', 
-	'ngAnimate', 
-	//'dialogs.main', 
-	//'ui.bootstrap', 
+	'ngAnimate',
 	'pages',
 	'sessions', 
 	'users', 
 	'groups',
+	'stations',
+	'reports',
+	'ui.materialize',
 ]);
 
 alinaApp.controller('navbarController', function ($scope, $window, authService, userService) {
