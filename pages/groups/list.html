@@ -1,40 +1,50 @@
-<div class="table-responsive">
-	<table class="table">
-		<thead>
-			<tr>
-				<th colspan="4"><h1>Groups</h1></th>
-				<th>
-					<a class="btn btn-default" ng-click="add()" role="button">
-						<i class="fa fa-plus fa-2"></i>&nbsp;New
-					</a>
-				</th>
-			</tr>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Label</th>
-				<th>Create date</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="group in groups track by $index" id="row-{{ $index }}">
-				<td>{{ group.id }}</td>
-				<td>{{ group.name }}</td>
-				<td>{{ group.label }}</td>
-				<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
-				<td>
-					<a class="btn btn-default" ng-click="view(group.id)" role="button">
-						<i class="fa fa-eye"></i>&nbsp;View
-					</a>
-					<a class="btn btn-default" ng-click="edit(group.id)" role="button">
-						<i class="fa fa-pencil"></i>&nbsp;Edit
-					</a>
-					<a class="btn btn-danger" ng-click="delete(group.id, $index)" role="button">
+<h1>Groups</h1>
+<div class="row">
+	<a class="btn btn-default" ng-click="new()">
+		<i class="fa fa-plus"></i>&nbsp;New
+	</a>
+</div>
+<div class="row">
+	<table class="bordered highlight responsive-table">
+	    <thead>
+	    	<tr>
+		    	<th>ID</th>
+		    	<th>Name</th>
+		    	<th>Created</th>
+		    	<th>Actions</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<tr ng-repeat="group in groups track by $index" id="row-{{ group.id }}">
+	    		<td>{{ group.id }}</td>
+	    		<td>{{ group.name }}</td>
+	    		<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+	    		<td>
+	    			<a class="btn btn-default" ng-click="view(group.id)" >
+	    				<i class="fa fa-eye"></i>&nbsp;View
+	    			</a>
+	    			<a class="btn btn-default" ng-click="edit(group.id)">
+	    				<i class="fa fa-pencil"></i>&nbsp;Edit
+	    			</a>
+
+	    			<a class=" btn modal-trigger" href="#delete-modal" ng-click="setIdToDelete($event, group.id)">
 						<i class="fa fa-trash"></i>&nbsp;Delete
 					</a>
-				</td>
-			</tr>
-		</tbody>
+	    		</td>
+	    	</tr>
+	    </tbody>
 	</table>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="delete-modal" class="modal">
+    <div class="modal-content">
+		<h4>Delete Group</h4>
+		<p>Are you sure about to delete the group?</p>
+    </div>
+    <div class="modal-footer">
+            <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat" ng-click="closeModal($event)">Disagree</a>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="delete($event)">Agree</a>
+	</div>
 </div>

@@ -1,7 +1,8 @@
 alinaApp.controller('groupListController', 
-function ($scope, $rootScope, $location, $window, groupService, userService, dialogs) {
+function ($scope, $rootScope, $location, $window, groupService) {
 
 	$scope.pageClass = 'page-standard';
+	$scope.idToDelete = null;
 
 	groupService.getGroups(function (response) {
 
@@ -22,30 +23,36 @@ function ($scope, $rootScope, $location, $window, groupService, userService, dia
 		$location.path('groups/edit/' + id);
 	};
 
-	$scope.delete = function (id, index) {
+	$scope.delete = function (event) {
 
-		var confirmDialog = dialogs.confirm('Delete Group', 'Are you sure to delete the group?', {size: 'sm'});
-		confirmDialog.result.then(
-			function(btn) {
-						
-				groupService.deleteGroup(function () {
+		event.preventDefault();
+		
+		groupService.deleteGroup(function () {
 
-					var row = angular.element(document.querySelector('#row-' + index));
-					row.remove();
-				},
-				function (response) {
+			var row = angular.element(document.querySelector('#row-' + $scope.idToDelete));
+			row.remove();
+		},
+		function (response) {
 					
-					$scope.error = response.error;
-				},
-				id);
-			},
-			function(btn) {
-
-				console.log('We do nothing');
-			});
+			$scope.error = response.error;
+		},
+		$scope.idToDelete);
 	};
 
-	$scope.add = function () {
+	$scope.new = function () {
 		$location.path('groups/create');
 	};
+
+	$scope.closeModal = function (event) {
+		
+		event.preventDefault();
+		$('#delete-modal').closeModal();
+	};
+
+	$scope.setIdToDelete = function (event, id) {
+
+		event.preventDefault();
+		$scope.idToDelete = id;
+		$('#delete-modal').openModal();
+	}
 });

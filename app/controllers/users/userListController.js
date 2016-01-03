@@ -25,11 +25,7 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 	$scope.delete = function (event) {
 		
 		event.preventDefault();
-		console.log('delete'); 
-		console.log($scope.idToDelete); 
 		
-		/* Commented until we translate the add section		
-		*/
 		userService.deleteUser(function () {
 
 			var row = angular.element(document.querySelector('#row-' + $scope.idToDelete));
