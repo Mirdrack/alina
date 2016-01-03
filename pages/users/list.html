@@ -15,7 +15,7 @@
 	    	</tr>
 	    </thead>
 	    <tbody>
-	    	<tr ng-repeat="user in users track by $index" id="row-{{ $index }}">
+	    	<tr ng-repeat="user in users track by $index" id="row-{{ user.id }}">
 	    		<td>{{ user.id }}</td>
 	    		<td>{{ user.name }}</td>
 	    		<td>{{ user.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>

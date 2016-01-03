@@ -29,9 +29,10 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 		console.log($scope.idToDelete); 
 		
 		/* Commented until we translate the add section		
+		*/
 		userService.deleteUser(function () {
 
-			var row = angular.element(document.querySelector('#row-' + index));
+			var row = angular.element(document.querySelector('#row-' + $scope.idToDelete));
 			row.remove();
 		},
 		function (response) {
@@ -39,7 +40,6 @@ alinaApp.controller('userListController', function ($scope, $rootScope, $locatio
 			$scope.error = response.error;
 		},
 		$scope.idToDelete);
-		*/
 	};
 
 	$scope.new = function () {
