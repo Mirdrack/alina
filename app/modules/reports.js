@@ -1,4 +1,4 @@
-angular.module('reports', []).config(function ($routeProvider) {
+angular.module('reports', ['nvd3']).config(function ($routeProvider) {
 
 	$routeProvider
 		.when('/reports/make/:id', {
