@@ -1,43 +1,44 @@
-<style>
-	.b-color{
-		color:#777;
-		min-height: 50px;
-	}
-	.list-group-item{
-		height: 40px;
-	}
+<style type="text/css">
+.list-item {
+	margin-top: 5px;
+}
+
+.groups-list
+{
+	min-height: 300px;
+}
 </style>
 
-<div class="row card">
-	<div class="col-md-4">
-		<h2>Group Data</h2>
+<h1>New Group</h1>
+<div class="row">
+	<div class="col s4">
+		<h5>Group Data</h5>
 		<form class="form-edit-user" ng-submit="create()">
-			<div class="form-group">
-				<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
-			</div>
-			<div class="form-group">
-				<label for="Name">Name:</label>
-				<input id="Name" type="text" ng-model="group.name" class="form-control" placeholder="Name" required>
-			</div>
-			<div class="form-group">
-				<label for="Label">Label:</label>
-				<input id="Label" type="text" ng-model="group.label" class="form-control" placeholder="Label">
-			</div>
-			<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+			<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
+			Name:
+			<input type="text" ng-model="group.name" class="form-control" placeholder="Name" required>
+			Label:
+			<input type="email" ng-model="group.label" class="form-control" placeholder="Label" required>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 		</form>
 	</div>
-	<div class="col-md-4">
-		<div class="form-group">
-				<h2>Dragg the permissions</h2>
-				<ul id="groupPerms" class="list-group b-color  dragg-connected">
-					<li class="list-group-item" ng-repeat="perm in basicperm" ng-value="{{ perm.id }}">{{ perm.label }}</li>
-				</ul>
-			</div>
+	<div class="col s4">
+		<h5>Group permissions</h5>
+		<ul id="groupPerms" class="dragg-connected groups-list">
+			<li class="card-panel teal lighten-2 list-item" ng-repeat="perm in basicperm" ng-value="{{ perm.id }}">
+				{{ perm.label }}
+			</li>
+		</ul>
 	</div>
-	<div class="col-md-4">
-		<h2>Permissions list</h2>
-		<ul id="listPerms" class="list-group b-color dragg-connected">
-			<li class="list-group-item perm-dragg" ng-repeat="permission in permissions" ng-value="{{ permission.id }}">{{ permission.label }}</li>
+	<div class="col s4">
+		<h5>Permissions list</h5>
+		<ul id="listPerms" class="dragg-connected groups-list">
+			<li class="card-panel teal lighten-2 perm-dragg list-item" ng-repeat="group in groups" ng-value="{{ group.id }}">
+				{{ group.label }}
+			</li>
+			<li class="card-panel teal lighten-2 perm-dragg list-item" ng-repeat="permission in permissions" ng-value="{{ permission.id }}">
+				{{ permission.label }}
+			</li>
 		</ul>
 	</div>
 </div>

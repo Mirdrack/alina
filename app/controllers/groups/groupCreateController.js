@@ -4,6 +4,7 @@ alinaApp.controller('groupCreateController',function ($scope, $rootScope, $locat
 
 	groupService.getPermissions(
 		function (response) {
+
 			$scope.group = {permissions: []};
 			$scope.permissions = response.data;
 			$scope.basicperm = [];
@@ -44,14 +45,14 @@ alinaApp.controller('groupCreateController',function ($scope, $rootScope, $locat
 				*/
 				$location.path('/groups');
 			},
-			function (response){
+			function (response) {
 				
 				$rootScope.error = response.error;
-				if($rootScope.error == 'Invalid fields'){
+				if($rootScope.error == 'Invalid fields') {
+
 					$('#alGroup').show();
 				}
 			}
 		);
 	};
-
 });

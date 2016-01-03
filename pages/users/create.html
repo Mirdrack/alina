@@ -1,13 +1,12 @@
 <style type="text/css">
-	.list-item {
-		margin-top: 5px;
-	}
+.list-item {
+	margin-top: 5px;
+}
 
-	.groups-list
-	{
-		min-height: 150px;
-	}
-
+.groups-list
+{
+	min-height: 150px;
+}
 </style>
 <h1>New User</h1>
 <div class="row">
@@ -23,18 +22,16 @@
 			<input type="password" ng-model="user.password" class="form-control" id="password" placeholder="Password">
 			Password confirm:
 			<input type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
-			<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 		</form>
 	</div>
 	<div class="col s4">
-		<div class="form-group">
-				<h3>User Groups</h3>
-				<ul id="userGroups" class="dragg-connected groups-list">
-					<li class="card-panel teal lighten-2 list-item" ng-repeat="group in basicGroups" ng-value="{{ group.id }}">
-						{{ group.label }}
-					</li>
-				</ul>
-			</div>
+		<h3>User Groups</h3>
+		<ul id="userGroups" class="dragg-connected groups-list">
+			<li class="card-panel teal lighten-2 list-item" ng-repeat="group in basicGroups" ng-value="{{ group.id }}">
+				{{ group.label }}
+			</li>
+		</ul>
 	</div>
 	<div class="col s4">
 		<h3>Groups</h3>
