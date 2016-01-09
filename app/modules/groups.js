@@ -5,8 +5,8 @@ angular.module('groups', []).config(function ($routeProvider) {
 			templateUrl: 'pages/groups/list.html',
 			controller: 'groupListController'
 		})
-		.when('/groups/view/:id', {
-			templateUrl: 'pages/groups/view.html',
+		.when('/groups/show/:id', {
+			templateUrl: 'pages/groups/show.html',
 			controller: 'groupShowController'
 		})
 		.when('/groups/create', {

@@ -1,0 +1,26 @@
+<h1>{{ user.name }}</h1>
+<div class="row">
+	<table class="responsive-table">
+		<tbody>
+			<tr>
+				<td>Name</td>
+				<td>{{ group.name }}</td>
+			</tr>
+			<tr>
+				<td>Label</td>
+				<td>{{ group.label }}</td>
+			</tr>
+			<tr>
+				<td>Creation date</td>
+				<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+			</tr>
+			<tr data-type="scroll">
+				<td>Permissions</td>
+				<td>
+					<div ng-repeat="perm in group.permissions" ng-value="{{ perm.id }}">{{ perm.label }}</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+

@@ -15,7 +15,7 @@ function ($scope, $rootScope, $location, $window, groupService) {
 
 	$scope.view = function (id) {
 
-		$location.path('groups/view/' + id);
+		$location.path('groups/show/' + id);
 	};
 
 	$scope.edit = function (id) {
