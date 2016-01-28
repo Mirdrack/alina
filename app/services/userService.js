@@ -27,11 +27,11 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 		},
 		giveRole: function (success, error, userId, roleId){
 
-			$htpp.post(url.BASE + '/user/give-role/' + userId + '/' + roleId).success(success).error(error);
+			$http.post(url.BASE + '/user/give-role/' + userId + '/' + roleId).success(success).error(error);
 		},
 		retrieveRole: function (success, error, userId, roleId){
 
-			$htpp.post(url.BASE + '/user/retrieve-role/' + userId + '/' + roleId).success(success).error(error);	
+			$http.post(url.BASE + '/user/retrieve-role/' + userId + '/' + roleId).success(success).error(error);
 		}
 	};
 }]);
