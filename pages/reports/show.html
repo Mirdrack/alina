@@ -1,14 +1,33 @@
 <style type="text/css">
-svg
+text 
 {
-	color: 000;
+   fill: #FFF !important;
 }
+
+.x-value,
+.legend-color-guide,
+.key,
+.value
+{
+	color: #006064 !important;
+}
+
 </style>
 <h1>Show</h1>
 {{ stationId }}
 {{ start }}
 {{ end }}
+{{ lapse }}
 
 <br>
 <br>
-<nvd3 options="options" data="data" class="with-3d-shadow with-transitions" ></nvd3>
+<nvd3 options="dynamicLevelOptions" data="dynamicLevelData" class="with-3d-shadow with-transitions" ></nvd3>
+<br>
+<br>
+<nvd3 options="voltageOptions" data="voltageData" class="with-3d-shadow with-transitions" ></nvd3>
+<br>
+<br>
+<nvd3 options="currentOptions" data="currentData" class="with-3d-shadow with-transitions" ></nvd3>
+<br>
+<br>
+<nvd3 options="powerOptions" data="powerData" class="with-3d-shadow with-transitions" ></nvd3>
