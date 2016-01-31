@@ -74,7 +74,8 @@ alinaApp.controller('reportMakeController', function ($scope, $location, $routeP
 
 			if($scope.report.type == 'day')
 			{
-				var day = new Date($scope.report.day);
+				var day = $scope.report.day.split('/');
+				day = new Date(day[2], day[1] - 1, day[0]);
 				firstDay = day.toISOString().substring(0, 10);
 				lastDay = day.toISOString().substring(0, 10);
 			}
@@ -93,7 +94,12 @@ alinaApp.controller('reportMakeController', function ($scope, $location, $routeP
 				firstDay = firstDay.toISOString().substring(0, 10);
 				lastDay = lastDay.toISOString().substring(0, 10);
 			}
-			$location.path('reports/show/' + $scope.report.stationId + '/' + firstDay + '/' + lastDay);
+			var reportShowUrl = ''; 
+			reportShowUrl += 'reports/show/' + $scope.report.stationId;
+			reportShowUrl += '/' + firstDay + '/' + lastDay 
+			reportShowUrl += '/' + $scope.report.type;
+			
+			$location.path(reportShowUrl);
 		}
 	}
 
@@ -110,7 +116,6 @@ alinaApp.controller('reportMakeController', function ($scope, $location, $routeP
 
 	function checkType()
 	{
-		console.log($scope.report.type);
 		if($scope.report.type == null)
 		{
 			$scope.error = 'Type of report must be selected';
