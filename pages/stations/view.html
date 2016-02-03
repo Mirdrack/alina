@@ -1,36 +1,11 @@
-<h1>{{ station.name }}</h1>
-<div class="row">
-	<table class="bordered responsive-table">
-		<thead>
-			<tr>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Latitud</td>
-				<td>25.751</td>
-			</tr>
-			<tr>
-				<td>Longitud</td>
-				<td>25.751</td>
-			</tr>
-			<tr>
-				<td>Bomba</td>
-				<td>Danfus</td>
-			</tr>
-			<tr>
-				<td>Descripci&oacute;n</td>
-				<td>Loren Ipsum...</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-
+<h1>{{ station.name }}({{ status }})</h1>
 <div class="row">
 	<a class="btn btn-default" ng-click="makeReport(station.id)">
 		<i class="fa fa-plus"></i>&nbsp;Report
+	</a>
+	&nbsp;
+	<a id="switch" class="btn btn-default" ng-click="changeStatus(station.id)">
+		<i class="fa fa-power-off"></i>&nbsp;{{ btnLabel }}
 	</a>
 </div>
 
