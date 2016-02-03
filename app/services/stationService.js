@@ -2,12 +2,16 @@ alinaApp.factory('stationService', ['$http', 'urls', '$window', function ($http,
 
 	
 	return {
-		getStationsList: function(success, error) {
+		getStationsList: function (success, error) {
 			$http.get(urls.BASE + '/station').success(success).error(error);
 		},
 		getStation: function (success, error, id) {
 			
 			$http.get(urls.BASE + '/station/' + id).success(success).error(error);
+		},
+		turnOn: function(success, error, id) {
+
+			$http.post(urls.BASE + '/station/turn-on', { 'id': id }).success(success).error(error);
 		}
 	};
 
