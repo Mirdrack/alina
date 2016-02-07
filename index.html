@@ -55,6 +55,7 @@
 	<header>
         <nav ng-controller="navbarController">
             <div class="nav-wrapper">
+                <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="#home"><i class="material-icons left">home</i> Home</a></li>
                     <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
@@ -63,6 +64,26 @@
                     <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li ng-if="token">
+                        <a class="dropdown-button btn" href="#" data-activates="user-drop-down" data-beloworigin="true">
+                            {{ user.name }}
+                        </a>
+                        <ul id='user-drop-down' class='dropdown-content'>
+                            <li><a href="#profile"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <li ng-if="!token"><a href="#signup"><i class="material-icons left">input</i> Sign Up</a></li>
+                    <li ng-if="!token"><a href="#signin"><i class="material-icons left">forward</i> Sign In</a></li>
+                </ul>
+                <!-- Mobile -->
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#home"><i class="material-icons left">home</i> Home</a></li>
+                    <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
+                    <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
+                    <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
+                    <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
+
                     <li ng-if="token">
                         <a class="dropdown-button btn" href="#" data-activates="user-drop-down" data-beloworigin="true">
                             {{ user.name }}

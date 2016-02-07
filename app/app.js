@@ -32,6 +32,8 @@ alinaApp.controller('navbarController', function ($scope, $window, authService, 
 			window.location = '/';
 		});
 	};
+
+	jQuery('.button-collapse').sideNav();
 });
 
 alinaApp.controller('mainController', function ($scope, $window) {
