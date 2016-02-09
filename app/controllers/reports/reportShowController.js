@@ -1,4 +1,4 @@
-alinaApp.controller('reportShowController', function ($scope, $location, $routeParams, reportService) {
+alinaApp.controller('reportShowController', function ($scope, $location, $routeParams, reportService, urls) {
 
     // Setup the style for page
     $scope.pageClass = 'page-standard';
@@ -14,6 +14,12 @@ alinaApp.controller('reportShowController', function ($scope, $location, $routeP
     $scope.start = $routeParams.start;
     $scope.end = $routeParams.end;
     $scope.lapse = $routeParams.lapse;
+
+    $scope.xlsUrl  = urls.BASE + '/chart/generate-xls';
+    $scope.xlsUrl += '/' + $scope.stationId;
+    $scope.xlsUrl += '/' + $scope.start;
+    $scope.xlsUrl += '/' + $scope.end;
+    $scope.xlsUrl += '/' + $scope.lapse;
 
     // We setup the label for the charts
     if($scope.lapse == 'day')

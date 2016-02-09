@@ -13,12 +13,28 @@ text
 }
 
 </style>
-<h1>Show</h1>
-{{ stationId }}
-{{ start }}
-{{ end }}
-{{ lapse }}
 
+<h1>Show</h1>
+<span class="hide">{{ stationId }}</span>
+<span class="hide">{{ lapse }}</span>
+
+<!-- 
+$stationId = $request->input('station_id'); 
+$lapse = $request->input('lapse'); 
+$start = $request->input('start'); 
+$end = $request->input('end');
+$column = $request->input('column'); 
+-->
+<div class="row">
+	<div class="col s8">
+		From {{ start }} to {{ end }}
+	</div>
+	<div class="col s4">
+		<a id="switch" class="btn btn-default right" href="{{ xlsUrl }}" target="_blank">
+			<i class="fa fa-download"></i>&nbsp;Download Report
+		</a>
+	</div>
+</div>
 <br>
 <br>
 <nvd3 options="dynamicLevelOptions" data="dynamicLevelData" class="with-3d-shadow with-transitions" ></nvd3>
