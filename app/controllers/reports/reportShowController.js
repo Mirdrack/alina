@@ -62,7 +62,7 @@ alinaApp.controller('reportShowController', function ($scope, $location, $routeP
             tickFormat: d3.format('02d')
         },
         yAxis: {
-            axisLabel: 'Height (m)',
+            axisLabel: '',
             tickFormat: function (d) {
                 return d3.format('.02f')(d);
             },
@@ -80,6 +80,8 @@ alinaApp.controller('reportShowController', function ($scope, $location, $routeP
             // We set the data for the chart, MUST be an array
             $scope.dynamicLevelData = [];
             $scope.dynamicLevelData.push(response.data);
+            // We assing the label for the y axis
+            chartGeneralOptions.yAxis.axisLabel = 'Meters (m)';
             // We set the options for the chart
             $scope.dynamicLevelOptions = { chart: chartGeneralOptions };
         },
@@ -103,6 +105,8 @@ alinaApp.controller('reportShowController', function ($scope, $location, $routeP
             // We set the data for the chart, MUST be an array
             $scope.voltageData = [];
             $scope.voltageData.push(response.data);
+            // We assing the label for the y axis
+            chartGeneralOptions.yAxis.axisLabel = 'Volts (V)';
             // We set the options for the chart
             $scope.voltageOptions = { chart: chartGeneralOptions };
         },
@@ -126,6 +130,8 @@ alinaApp.controller('reportShowController', function ($scope, $location, $routeP
             // We set the data for the chart, MUST be an array
             $scope.currentData = [];
             $scope.currentData.push(response.data);
+            // We assing the label for the y axis
+            chartGeneralOptions.yAxis.axisLabel = 'Ampers (A)';
             // We set the options for the chart
             $scope.currentOptions = { chart: chartGeneralOptions };
         },
@@ -149,6 +155,8 @@ alinaApp.controller('reportShowController', function ($scope, $location, $routeP
             // We set the data for the chart, MUST be an array
             $scope.powerData = [];
             $scope.powerData.push(response.data);
+            // We assing the label for the y axis
+            chartGeneralOptions.yAxis.axisLabel = 'Power (HP)';
             // We set the options for the chart
             $scope.powerOptions = { chart: chartGeneralOptions };
         },
