@@ -25,7 +25,8 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 	);
 
 	// We init the socket
-	var socket = io(urls.BASE_NODE);
+	var clientId = Math.floor((Math.random() * 10) + 1);
+	var socket = io(urls.BASE_NODE, { query: 'clientName=Alina-' + clientId });
 
 	socket.on('new-read-server', function (data) {
 
