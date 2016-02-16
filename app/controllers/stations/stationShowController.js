@@ -1,6 +1,16 @@
-alinaApp.controller('stationShowController', function ($scope, $rootScope , $location, $routeParams, stationService, urls) { 
+alinaApp.controller('stationShowController', 
+function ($scope, $rootScope , $location, $routeParams, stationService, userService, urls) { 
 	
 	$scope.pageClass = 'page-standard';
+
+	userService.getProfile(function (response) {
+
+		$user = response.data;
+	}, 
+	function () {
+
+		$rootScope.error = 'Failed to fetch profile data.';
+	});
 
 	stationService.getStation(
 		function (response) {
@@ -15,6 +25,17 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 
 				$scope.status = 'Off';
 				$scope.btnLabel = 'Turn On';
+			}
+
+			if($scope.station.alarm_activated == true) {
+
+				$scope.alarmStatus = 'On';
+				$scope.btnAlarmLabel = 'Turn Alarm Off';
+			}
+			else {
+
+				$scope.alarmStatus = 'Off';
+				$scope.btnAlarmLabel = 'Turn Alarm On';
 			}
 		},
 		function (response){
@@ -49,6 +70,20 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 		$scope.$apply();
 	});
 
+	socket.on('activate-alarm-server', function (data) {
+
+		$scope.btnAlarmLabel = 'Turn Alarm Off';
+		$scope.alarmStatus = 'On';
+		$scope.$apply();
+	});
+
+	socket.on('deactivate-alarm-server', function (data) {
+
+		$scope.btnAlarmLabel = 'Turn Alarm On';
+		$scope.alarmStatus = 'Off';
+		$scope.$apply();
+	});
+
 	socket.on('error-server', function (data) {
 
 		console.log(data);
@@ -63,11 +98,77 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 
 		if($scope.status == 'Off') {
 
-			socket.emit('turn-on', {'id' : id});
+			var event = {
+				user_id: parseInt($user.id),
+				station_id: id,
+				event_type_id: 1,
+				ip_address: clientIp,
+			};
+
+			var data = {
+				event_type: 'station-on',
+				message: 'The station has been turned on',
+				event: event,
+			};
+
+			socket.emit('turn-on', data);
+
 		}
 		if($scope.status == 'On') {
 
-			socket.emit('turn-off', {'id' : id});
+			var event = {
+				user_id: parseInt($user.id),
+				station_id: id,
+				event_type_id: 2,
+				ip_address: clientIp,
+			};
+
+			var data = {
+				event_type: 'station-off',
+				message: 'The station has been turned off',
+				event: event,
+			};
+
+			socket.emit('turn-off', data);
+		}
+	}
+
+	$scope.changeAlarmStatus = function (id) {
+
+		if($scope.status == 'Off') {
+
+			var event = {
+				user_id: parseInt($user.id),
+				station_id: id,
+				event_type_id: 3,
+				ip_address: clientIp,
+			};
+
+			var data = {
+				event_type: 'alarm-activated',
+				message: 'Alarm has been activated',
+				event: event,
+			};	
+
+			socket.emit('activate-alarm', data);
+
+		}
+		if($scope.status == 'On') {
+
+			var event = {
+				user_id: parseInt($user.id),
+				station_id: id,
+				event_type_id: 4,
+				ip_address: clientIp,
+			};
+
+			var data = {
+				event_type: 'alarm-deactivated',
+				message: 'Alarm has been activated',
+				event: event,
+			};
+
+			socket.emit('deactivate-alarm', data);
 		}
 	}
 
