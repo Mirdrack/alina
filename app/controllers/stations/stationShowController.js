@@ -135,7 +135,7 @@ function ($scope, $rootScope , $location, $routeParams, stationService, userServ
 
 	$scope.changeAlarmStatus = function (id) {
 
-		if($scope.status == 'Off') {
+		if($scope.alarmStatus == 'Off') {
 
 			var event = {
 				user_id: parseInt($user.id),
@@ -153,7 +153,7 @@ function ($scope, $rootScope , $location, $routeParams, stationService, userServ
 			socket.emit('activate-alarm', data);
 
 		}
-		if($scope.status == 'On') {
+		if($scope.alarmStatus == 'On') {
 
 			var event = {
 				user_id: parseInt($user.id),
