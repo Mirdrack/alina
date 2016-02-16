@@ -1,6 +1,16 @@
-alinaApp.controller('stationShowController', function ($scope, $rootScope , $location, $routeParams, stationService, urls) { 
+alinaApp.controller('stationShowController', 
+function ($scope, $rootScope , $location, $routeParams, stationService, userService, urls) { 
 	
 	$scope.pageClass = 'page-standard';
+
+	userService.getProfile(function (response) {
+
+		$user = response.data;
+	}, 
+	function () {
+
+		$rootScope.error = 'Failed to fetch profile data.';
+	});
 
 	stationService.getStation(
 		function (response) {
@@ -63,11 +73,40 @@ alinaApp.controller('stationShowController', function ($scope, $rootScope , $loc
 
 		if($scope.status == 'Off') {
 
-			socket.emit('turn-on', {'id' : id});
+			var event = {
+				user_id: parseInt($user.id),
+				station_id: id,
+				event_type_id: 1,
+				ip_address: clientIp,
+			};
+
+			var data = {
+				event_type: 'station-on',
+				message: 'The station has been turned on',
+				event: event,
+			};
+
+			console.log(data.message);
+			socket.emit('turn-on', data);
+
 		}
 		if($scope.status == 'On') {
 
-			socket.emit('turn-off', {'id' : id});
+			var event = {
+				user_id: parseInt($user.id),
+				station_id: id,
+				event_type_id: 2,
+				ip_address: clientIp,
+			};
+
+			var data = {
+				event_type: 'station-off',
+				message: 'The station has been turned off',
+				event: event,
+			};
+
+			console.log(data.message);
+			socket.emit('turn-off', data);
 		}
 	}
 
