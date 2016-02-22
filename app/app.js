@@ -7,6 +7,7 @@ var alinaApp = angular.module('alinaApp', [
 	'groups',
 	'stations',
 	'reports',
+	'station-alarms',
 	'ui.materialize',
 ]);
 
