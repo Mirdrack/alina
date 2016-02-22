@@ -31,6 +31,7 @@
     <script type="text/javascript" src="app/modules/groups.js"></script>
     <script type="text/javascript" src="app/modules/stations.js"></script>
     <script type="text/javascript" src="app/modules/reports.js"></script>
+    <script type="text/javascript" src="app/modules/stationAlarms.js"></script>
     <script type="text/javascript" src="app/controllers/sessionController.js"></script>
     <script type="text/javascript" src="app/controllers/profileController.js"></script>
     <script type="text/javascript" src="app/controllers/users/userListController.js"></script>
@@ -44,11 +45,13 @@
     <script type="text/javascript" src="app/controllers/stations/stationShowController.js"></script>
     <script type="text/javascript" src="app/controllers/reports/reportMakeController.js"></script>
     <script type="text/javascript" src="app/controllers/reports/reportShowController.js"></script>
+    <script type="text/javascript" src="app/controllers/station-alarms/stationAlarmsListController.js"></script>
     <script type="text/javascript" src="app/services/authService.js"></script>
 	<script type="text/javascript" src="app/services/userService.js"></script>
     <script type="text/javascript" src="app/services/groupService.js"></script>
     <script type="text/javascript" src="app/services/stationService.js"></script>
     <script type="text/javascript" src="app/services/reportService.js"></script>
+    <script type="text/javascript" src="app/services/stationAlarmService.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -57,14 +60,15 @@
         <nav ng-controller="navbarController">
             <div class="nav-wrapper">
                 <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <ul id="nav-desktop-l" class="left hide-on-med-and-down">
                     <li><a href="#home"><i class="material-icons left">home</i> Home</a></li>
                     <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
                     <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
                     <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
+                    <li ng-show="token"><a href="#station-alarms"><i class="fa fa-bell"></i> Alarms</a></li>
                     <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
                 </ul>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <ul id="nav-desktop-r" class="right hide-on-med-and-down">
                     <li ng-if="token">
                         <a class="dropdown-button btn" href="#" data-activates="user-drop-down" data-beloworigin="true">
                             {{ user.name }}
@@ -83,13 +87,14 @@
                     <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
                     <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
                     <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
+                    <li ng-show="token"><a href="#station-alarms"><i class="fa fa-bell"></i> Alarms</a></li>
                     <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
 
                     <li ng-if="token">
-                        <a class="dropdown-button btn" href="#" data-activates="user-drop-down" data-beloworigin="true">
+                        <a class="dropdown-button btn" href="#" data-activates="user-drop-down-mobile" data-beloworigin="true">
                             {{ user.name }}
                         </a>
-                        <ul id='user-drop-down' class='dropdown-content'>
+                        <ul id='user-drop-down-mobile' class='dropdown-content'>
                             <li><a href="#profile"><i class="fa fa-user"></i> Profile</a></li>
                             <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
                         </ul>
