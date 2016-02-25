@@ -3,6 +3,11 @@ alinaApp.factory('stationService', ['$http', 'urls', '$window', function ($http,
 	
 	return {
 		getStationsList: function (success, error) {
+
+			$http.get(urls.BASE + '/station/basic-list').success(success).error(error);
+		},
+		getStations: function (success, error) {
+
 			$http.get(urls.BASE + '/station').success(success).error(error);
 		},
 		getStation: function (success, error, id) {
