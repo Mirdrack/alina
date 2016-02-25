@@ -1,0 +1,41 @@
+<h1>{{ station.name }}</h1>
+
+<div class="row">
+	<a id="alarm-switch" class="btn btn-default" ng-click="changeAlarmStatus(station.id)">
+		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
+	</a>
+</div>
+
+<div class="row">
+	<table class="bordered highlight responsive-table">
+	    <thead>
+	    	<tr>
+		    	<th>ID</th>
+		    	<th>Name</th>
+		    	<th>Station</th>
+		    	<th>Created</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<tr ng-repeat="stationAlarm in stationAlarms track by $index" id="row-{{ stationAlarm.id }}">
+	    		<td>{{ stationAlarm.id }}</td>
+	    		<td>{{ stationAlarm.alarm_type.label }}</td>
+	    		<td>{{ stationAlarm.station.name }}</td>
+	    		<td>{{ stationAlarm.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+	    	</tr>
+	    </tbody>
+	</table>
+</div>
+<div class="row">
+	<pagination
+		page="paginator.current_page"
+		page-size="20"
+		total="paginator.total_count"
+		show-prev-next="true"
+		dots="..."
+		hide-if-empty="false"
+		adjacent="2"
+		scroll-top="false"
+		pagination-action="changePage(page)" 
+	/>
+</div>
