@@ -1,4 +1,10 @@
-<h1>Station Alarms</h1>
+<h1>{{ station.name }}</h1>
+
+<div class="row">
+	<a id="alarm-switch" class="btn btn-default" ng-click="changeAlarmStatus(station.id)">
+		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
+	</a>
+</div>
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
