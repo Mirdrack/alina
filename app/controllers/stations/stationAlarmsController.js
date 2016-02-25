@@ -1,4 +1,4 @@
-alinaApp.controller('stationAlarmsListController', 
+alinaApp.controller('stationAlarmsController',
 function ($scope, $rootScope, stationAlarmService, stationService) {
 
 	$scope.pageClass = 'page-standard';
