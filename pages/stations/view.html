@@ -1,12 +1,38 @@
+<style type="text/css">
+text 
+{
+   fill: #FFF !important;
+}
+
+.x-value,
+.legend-color-guide,
+.key,
+.value
+{
+	color: #006064 !important;
+}
+</style>
+
 <h1>{{ station.name }}({{ status }})</h1>
 <div class="row">
+	<div class="col s8">
+		<div class="card red darken-3" data-ng-show="error">
+            <div class="card-content white-text">
+              <span class="card-title">Error</span>
+              <p>{{ error }}</p>
+            </div>
+        </div>
+		<nvd3 options="currentOptions" data="currentData" class="with-3d-shadow with-transitions" ></nvd3>
+	</div>
+	<div class="col s4">
 	<a class="btn btn-default" ng-click="makeReport(station.id)">
 		<i class="fa fa-plus"></i>&nbsp;Report
 	</a>
-	&nbsp;
+	<br><br>
 	<a id="switch" class="btn btn-default" ng-click="changeStatus(station.id)">
 		<i class="fa fa-power-off"></i>&nbsp;{{ btnLabel }}
 	</a>
+	</div>
 </div>
 
 <div class="row">

@@ -1,5 +1,5 @@
 alinaApp.controller('stationShowController', 
-function ($scope, $rootScope , $location, $routeParams, stationService, userService, urls) { 
+function ($scope, $rootScope , $location, $routeParams, stationService, userService, reportService, urls) { 
 	
 	$scope.pageClass = 'page-standard';
 
@@ -107,4 +107,82 @@ function ($scope, $rootScope , $location, $routeParams, stationService, userServ
 			socket.emit('turn-off', data);
 		}
 	}
+
+	// Chart generation 
+
+	// Function to handle the errors on chart generation
+    errorChart = function (response) {
+
+        $scope.error = response.error;
+    };
+
+    // We catch the paramters for the url
+    $scope.stationId = $routeParams.id;
+    $scope.start = (new Date()).toISOString().substring(0, 10)
+    $scope.end = (new Date()).toISOString().substring(0, 10)
+    $scope.lapse = 'day';
+
+    // We setup the label for the charts
+    var lapseLabel =  'Time (hours)';
+    
+    // We setup the general options for all charts
+    var chartGeneralOptions = {
+        type: 'lineChart',
+        height: 200,
+        margin : {
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 60
+        },
+        x: function(d){ return d.x; },
+        y: function(d){ return d.y; },
+        useInteractiveGuideline: true,
+        dispatch: {
+            stateChange: function(e){ console.log("stateChange"); },
+            changeState: function(e){ console.log("changeState"); },
+            tooltipShow: function(e){ console.log("tooltipShow"); },
+            tooltipHide: function(e){ console.log("tooltipHide"); }
+        },
+        xAxis: {
+            axisLabel: lapseLabel,
+            tickFormat: d3.format('02d')
+        },
+        yAxis: {
+            axisLabel: '',
+            tickFormat: function (d) {
+                return d3.format('.02f')(d);
+            },
+            axisLabelDistance: 0
+        },
+        callback: function (chart) {
+            console.log("Chart Rendered !!!");
+        }
+    };
+
+    // Current Chart
+    // Preparing the data to make the post request
+    currentPostData = {
+        'station_id': $scope.stationId,
+        'lapse': $scope.lapse,
+        'start': $scope.start,
+        'end': $scope.end,
+        'column': 'current',
+    };
+
+    reportService.getChartValues(
+        function (response) {
+
+            // We set the data for the chart, MUST be an array
+            $scope.currentData = [];
+            $scope.currentData.push(response.data);
+            // We assing the label for the y axis
+            chartGeneralOptions.yAxis.axisLabel = 'Ampers (A)';
+            // We set the options for the chart
+            $scope.currentOptions = { chart: chartGeneralOptions };
+        },
+        errorChart,
+        currentPostData
+    );
+
 });
