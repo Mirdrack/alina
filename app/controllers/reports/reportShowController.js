@@ -72,6 +72,11 @@ alinaApp.controller('reportShowController', function ($scope, $location, $routeP
             console.log("Chart Rendered !!!");
         }
     };
+    if($scope.lapse == 'day')
+    {
+        chartGeneralOptions.x = function (d) { return new Date(Date.parse(d.x.replace('-','/','g'))); };
+        chartGeneralOptions.xAxis.tickFormat = function (d) { return d3.time.format('%H:%M')(new Date(d)); };
+    }
 
     // Dynamic Level Chart
     reportService.getChartValues(

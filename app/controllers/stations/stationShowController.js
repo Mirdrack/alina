@@ -118,8 +118,8 @@ function ($scope, $rootScope , $location, $routeParams, stationService, userServ
 
     // We catch the paramters for the url
     $scope.stationId = $routeParams.id;
-    $scope.start = (new Date()).toISOString().substring(0, 10)
-    $scope.end = (new Date()).toISOString().substring(0, 10)
+    $scope.start = (new Date(2016, 00, 27)).toISOString().substring(0, 10)
+    $scope.end = (new Date(2016, 00, 27)).toISOString().substring(0, 10)
     $scope.lapse = 'day';
 
     // We setup the label for the charts
@@ -135,7 +135,7 @@ function ($scope, $rootScope , $location, $routeParams, stationService, userServ
             bottom: 20,
             left: 60
         },
-        x: function(d){ return d.x; },
+        x: function(d){ return new Date(Date.parse(d.x.replace('-','/','g'))); },
         y: function(d){ return d.y; },
         useInteractiveGuideline: true,
         dispatch: {
@@ -146,7 +146,7 @@ function ($scope, $rootScope , $location, $routeParams, stationService, userServ
         },
         xAxis: {
             axisLabel: lapseLabel,
-            tickFormat: d3.format('02d')
+            tickFormat: function (d) { return d3.time.format('%H:%M')(new Date(d)); }
         },
         yAxis: {
             axisLabel: '',
