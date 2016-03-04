@@ -8,5 +8,9 @@ angular.module('stations', []).config(function ($routeProvider) {
 		.when('/stations/alarms/:id', {
 			templateUrl: 'pages/stations/alarms.html',
 			controller: 'stationAlarmsController'
+		})
+		.when('/stations/events/:id', {
+			templateUrl: 'pages/stations/events.html',
+			controller: 'stationEventsController'
 		});
 });

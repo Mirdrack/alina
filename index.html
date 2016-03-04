@@ -44,6 +44,7 @@
     <script type="text/javascript" src="app/controllers/groups/groupShowController.js"></script>
     <script type="text/javascript" src="app/controllers/stations/stationShowController.js"></script>
     <script type="text/javascript" src="app/controllers/stations/stationAlarmsController.js"></script>
+    <script type="text/javascript" src="app/controllers/stations/stationEventsController.js"></script>
     <script type="text/javascript" src="app/controllers/reports/reportMakeController.js"></script>
     <script type="text/javascript" src="app/controllers/reports/reportShowController.js"></script>
     <script type="text/javascript" src="app/controllers/station-alarms/stationAlarmsListController.js"></script>
@@ -53,6 +54,7 @@
     <script type="text/javascript" src="app/services/stationService.js"></script>
     <script type="text/javascript" src="app/services/reportService.js"></script>
     <script type="text/javascript" src="app/services/stationAlarmService.js"></script>
+    <script type="text/javascript" src="app/services/stationEventService.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -67,6 +69,7 @@
                     <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
                     <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
                     <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
+                    <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
                     <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
                 </ul>
                 <ul id="nav-desktop-r" class="right hide-on-med-and-down">
@@ -89,6 +92,7 @@
                     <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
                     <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
                     <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
+                    <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
                     <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
 
                     <li ng-if="token">
