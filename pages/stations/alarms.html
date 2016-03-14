@@ -1,7 +1,17 @@
 <h1>{{ station.name }}</h1>
 
 <div class="row">
-	<a id="alarm-switch" class="btn btn-default" ng-click="changeAlarmStatus(station.id)">
+	<a id="maya-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
+		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
+	</a>
+	<a id="electra-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
+		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
+	</a>
+	<br><br>
+	<a id="hestia-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
+		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
+	</a>
+	<a id="aretusa-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
 		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
 	</a>
 </div>
@@ -38,4 +48,17 @@
 		scroll-top="false"
 		pagination-action="changePage(page)" 
 	/>
+</div>
+
+<!-- Modal Structure -->
+<div id="deactivate-modal" class="modal">
+    <div class="modal-content">
+		<h4>Deactivate alarm</h4>
+		<p>Enter the minutes to turn on alarm</p>
+		<input type="text" maxlength="4"></input>
+    </div>
+    <div class="modal-footer">
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="method($event)">Turn Off</a>
+            <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat" ng-click="closeModal($event)">Cancel</a>
+	</div>
 </div>

@@ -111,4 +111,17 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationService,
 		}
 	};
 
+	$scope.setStationToChangeStatus = function (event, id) {
+
+		event.preventDefault();
+		//$scope.idToDelete = id;
+		$('#deactivate-modal').openModal();
+	}
+
+	$scope.closeModal = function (event) {
+		
+		event.preventDefault();
+		$('#deactivate-modal').closeModal();
+	};
+
 });
