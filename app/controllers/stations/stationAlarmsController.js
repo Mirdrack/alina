@@ -1,5 +1,5 @@
 alinaApp.controller('stationAlarmsController',
-function ($scope, $rootScope, $routeParams, stationAlarmService, stationService, urls) {
+function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorService, stationService, urls) {
 
 	$scope.pageClass = 'page-standard';
 
@@ -23,6 +23,30 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationService,
 			$scope.error = response.error;
 		},
 		$routeParams.id
+	);
+
+	stationSensorService.getSensorList(
+		function (response) {
+
+			$scope.sensors = response.data;
+			for(var cont = 0; cont < $scope.sensors.length; cont++) {
+
+				if($scope.sensors[cont].alarm_activated == true) {
+
+					$scope.sensors[cont].alarmStatus = 'On';
+					$scope.sensors[cont].btnAlarmLabel = 'Turn Alarm Off';
+				}
+				else {
+
+					$scope.sensors[cont].alarmStatus = 'Off';
+					$scope.sensors[cont].btnAlarmLabel = 'Turn Alarm On';
+				}		
+			}
+		},
+		function (response){
+
+			$scope.error = response.error;
+		}
 	);
 
 	stationAlarmService.getStationAlarmsList(function (response) {

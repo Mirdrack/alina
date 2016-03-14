@@ -1,19 +1,28 @@
+<style type="text/css">
+.sensor-container
+{
+	margin-left: 20px;
+	float: left;
+}
+
+.clear-fix
+{
+	clear: both;
+}
+
+</style>
 <h1>{{ station.name }}</h1>
 
 <div class="row">
-	<a id="maya-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
-		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
-	</a>
-	<a id="electra-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
-		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
-	</a>
-	<br><br>
-	<a id="hestia-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
-		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
-	</a>
-	<a id="aretusa-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, station.id)">
-		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
-	</a>
+
+	<div ng-repeat="sensor in sensors track by $index" id="sensor-{{ sensor.id }}" class="sensor-container">
+		{{ sensor.label }}
+		<br>
+		<a id="{{ sensor.name }}-switch" class="btn btn-default" ng-click="setStationToChangeStatus($event, sensor.id)">
+			<i class="fa fa-power-off"></i>&nbsp;{{ sensor.btnAlarmLabel }}
+		</a>		
+	</div>
+	<div class="clear-fix"></div>
 </div>
 
 <div class="row">
