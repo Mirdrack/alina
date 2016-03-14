@@ -1,22 +1,23 @@
 alinaApp.controller('stationAlarmsController',
-function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorService, stationService, urls) {
+function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorService, stationService, userService, urls) {
 
 	$scope.pageClass = 'page-standard';
+
+	$scope.cooldown = 1;
+
+	userService.getProfile(function (response) {
+
+		$scope.user = response.data;
+	}, 
+	function () {
+
+		$rootScope.error = 'Failed to fetch profile data.';
+	});
 
 	stationService.getStation(
 		function (response) {
 
 			$scope.station = response.data;
-			if($scope.station.alarm_activated == true) {
-
-				$scope.alarmStatus = 'On';
-				$scope.btnAlarmLabel = 'Turn Alarm Off';
-			}
-			else {
-
-				$scope.alarmStatus = 'Off';
-				$scope.btnAlarmLabel = 'Turn Alarm On';
-			}
 		},
 		function (response){
 
@@ -38,8 +39,16 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 				}
 				else {
 
+					var endTime = moment($scope.sensors[cont].alarm_turned_off_at);
+					endTime.add($scope.sensors[cont].alarm_cooldown, 'minute');
+					var now = moment();
+					var diff = moment(endTime).diff(now);
+					var diffSeconds = Math.floor(moment.duration(diff).asSeconds());
+
+					
 					$scope.sensors[cont].alarmStatus = 'Off';
 					$scope.sensors[cont].btnAlarmLabel = 'Turn Alarm On';
+					$scope.sensors[cont].endTime = diffSeconds;
 				}		
 			}
 		},
@@ -78,16 +87,48 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 
 	socket.on('activate-alarm-server', function (data) {
 
-		$scope.btnAlarmLabel = 'Turn Alarm Off';
-		$scope.alarmStatus = 'On';
+		eventTypeId = data.data.event_type_id;
+		console.log(eventTypeId);
+		if(eventTypeId == 3)
+		{
+			$scope.sensors[0].alarmStatus = 'On';
+			$scope.sensors[0].btnAlarmLabel = 'Turn Alarm Off';
+			$scope.sensors[0].alarm_activated = true;
+		}
+		if(eventTypeId == 5)
+		{
+			$scope.sensors[1].alarmStatus = 'On';
+			$scope.sensors[1].btnAlarmLabel = 'Turn Alarm Off';
+			$scope.sensors[0].alarm_activated = true;
+		}
+		if(eventTypeId == 7)
+		{
+			$scope.sensors[2].alarmStatus = 'On';
+			$scope.sensors[2].btnAlarmLabel = 'Turn Alarm Off';
+			$scope.sensors[0].alarm_activated = true;
+		}
+		if(eventTypeId == 9)
+		{
+			$scope.sensors[9].alarmStatus = 'On';
+			$scope.sensors[9].btnAlarmLabel = 'Turn Alarm Off';
+			$scope.sensors[0].alarm_activated = true;
+		}
 		$scope.$apply();
 	});
 
 	socket.on('deactivate-alarm-server', function (data) {
 
-		$scope.btnAlarmLabel = 'Turn Alarm On';
+		eventTypeId = data.data.event_type_id;
+		if(eventTypeId == 4)
+		{
+			$scope.sensors[cont].alarmStatus = 'Off';
+			$scope.sensors[cont].btnAlarmLabel = 'Turn Alarm On';
+			$scope.sensors[cont].endTime = diffSeconds;
+		}
+		console.log(eventTypeId);
+		/*$scope.btnAlarmLabel = 'Turn Alarm On';
 		$scope.alarmStatus = 'Off';
-		$scope.$apply();
+		$scope.$apply();*/
 	});
 
 	socket.on('error-server', function (data) {
@@ -100,8 +141,8 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 		console.log(id);
 		if($scope.alarmStatus == 'Off') {
 
-			var event = {
-				user_id: parseInt($user.id),
+			/*var event = {
+				user_id: parseInt($scope.user.id),
 				station_id: id,
 				event_type_id: 3,
 				ip_address: clientIp,
@@ -113,7 +154,7 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 				event: event,
 			};	
 
-			socket.emit('activate-alarm', data);
+			socket.emit('activate-alarm', data);*/
 
 		}
 		if($scope.alarmStatus == 'On') {
@@ -135,17 +176,81 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 		}
 	};
 
-	$scope.setStationToChangeStatus = function (event, id) {
+	$scope.changeStatusClick = function (event, sensor) {
 
 		event.preventDefault();
-		//$scope.idToDelete = id;
-		$('#deactivate-modal').openModal();
+
+		// If alarm is inactive
+		if(!sensor.alarm_activated) {
+
+			if(sensor.name == 'Maya') 
+				eventTypeId = 3;
+			if(sensor.name == 'Electra') 
+				eventTypeId = 5;
+			if(sensor.name == 'Hestia') 
+				eventTypeId = 7;
+			if(sensor.name == 'Aretusa') 
+				eventTypeId = 9;
+
+			var event = {
+				user_id: parseInt($scope.user.id),
+				station_id: parseInt(sensor.station_id),
+				event_type_id: eventTypeId,
+				ip_address: clientIp,
+			};
+
+			var data = {
+				event_type: 'alarm-activated',
+				message: 'Alarm has been activated',
+				event: event,
+			};
+
+			console.log(event);
+			socket.emit('activate-alarm', data);
+		}
+		else {
+
+			$scope.sensorToHandle = sensor;
+			$('#deactivate-modal').openModal();
+		}
+	}
+
+	$scope.deactivateAlarm = function (event) {
+
+		event.preventDefault();
+
+		if($scope.sensorToHandle.name == 'Maya') 
+			eventTypeId = 4;
+		if($scope.sensorToHandle.name == 'Electra') 
+			eventTypeId = 6;
+		if($scope.sensorToHandle.name == 'Hestia') 
+			eventTypeId = 8;
+		if($scope.sensorToHandle.name == 'Aretusa') 
+			eventTypeId = 10;
+
+		var event = {
+			user_id: parseInt($scope.user.id),
+			station_id: parseInt($scope.sensorToHandle.station_id),
+			event_type_id: eventTypeId,
+			ip_address: clientIp,
+		};
+
+		var data = {
+			event_type: 'alarm-deactivated',
+			message: 'Alarm has been activated',
+			event: event,
+		};
+
+		console.log(event);
+		socket.emit('deactivate-alarm', data);
 	}
 
 	$scope.closeModal = function (event) {
 		
+		$scope.sensorToHandle = null;
+		$scope.cooldown = 1;
 		event.preventDefault();
 		$('#deactivate-modal').closeModal();
-	};
+	}
 
 });

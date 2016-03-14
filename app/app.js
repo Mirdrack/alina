@@ -9,6 +9,7 @@ var alinaApp = angular.module('alinaApp', [
 	'reports',
 	'station-alarms',
 	'ui.materialize',
+	'timer',
 ]);
 
 alinaApp.controller('navbarController', function ($scope, $window, authService, userService) {
