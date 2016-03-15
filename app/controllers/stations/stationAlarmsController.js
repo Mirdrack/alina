@@ -87,8 +87,7 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 
 	socket.on('activate-alarm-server', function (data) {
 
-		eventTypeId = data.data.event_type_id;
-		console.log(eventTypeId);
+		eventTypeId = data.station_event.event_type_id;
 		if(eventTypeId == 3)
 		{
 			$scope.sensors[0].alarmStatus = 'On';
@@ -99,82 +98,47 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 		{
 			$scope.sensors[1].alarmStatus = 'On';
 			$scope.sensors[1].btnAlarmLabel = 'Turn Alarm Off';
-			$scope.sensors[0].alarm_activated = true;
+			$scope.sensors[1].alarm_activated = true;
 		}
 		if(eventTypeId == 7)
 		{
 			$scope.sensors[2].alarmStatus = 'On';
 			$scope.sensors[2].btnAlarmLabel = 'Turn Alarm Off';
-			$scope.sensors[0].alarm_activated = true;
+			$scope.sensors[2].alarm_activated = true;
 		}
 		if(eventTypeId == 9)
 		{
-			$scope.sensors[9].alarmStatus = 'On';
-			$scope.sensors[9].btnAlarmLabel = 'Turn Alarm Off';
-			$scope.sensors[0].alarm_activated = true;
+			$scope.sensors[3].alarmStatus = 'On';
+			$scope.sensors[3].btnAlarmLabel = 'Turn Alarm Off';
+			$scope.sensors[3].alarm_activated = true;
 		}
 		$scope.$apply();
 	});
 
 	socket.on('deactivate-alarm-server', function (data) {
 
-		eventTypeId = data.data.event_type_id;
+		eventTypeId = data.station_event.event_type_id;
 		if(eventTypeId == 4)
 		{
-			$scope.sensors[cont].alarmStatus = 'Off';
-			$scope.sensors[cont].btnAlarmLabel = 'Turn Alarm On';
-			$scope.sensors[cont].endTime = diffSeconds;
+			var endTime = moment(data.station_sensor.alarm_turned_off_at); // creo que ya tengo el dato
+			endTime.add(data.station_sensor.alarm_cooldown, 'minute');  // creo que ya tengo el dato
+			var now = moment();
+			var diff = moment(endTime).diff(now);
+			var diffSeconds = Math.floor(moment.duration(diff).asSeconds());
+
+
+			$scope.sensors[0].alarmStatus = 'Off';
+			$scope.sensors[0].btnAlarmLabel = 'Turn Alarm On';
+			$scope.sensors[0].endTime = diffSeconds;
+			$scope.sensors[0].alarm_activated = false;
+			$scope.$apply();
 		}
-		console.log(eventTypeId);
-		/*$scope.btnAlarmLabel = 'Turn Alarm On';
-		$scope.alarmStatus = 'Off';
-		$scope.$apply();*/
 	});
 
 	socket.on('error-server', function (data) {
 
 		console.log(data);
 	});
-
-	$scope.changeAlarmStatus = function (id) {
-
-		console.log(id);
-		if($scope.alarmStatus == 'Off') {
-
-			/*var event = {
-				user_id: parseInt($scope.user.id),
-				station_id: id,
-				event_type_id: 3,
-				ip_address: clientIp,
-			};
-
-			var data = {
-				event_type: 'alarm-activated',
-				message: 'Alarm has been activated',
-				event: event,
-			};	
-
-			socket.emit('activate-alarm', data);*/
-
-		}
-		if($scope.alarmStatus == 'On') {
-
-			var event = {
-				user_id: parseInt($user.id),
-				station_id: id,
-				event_type_id: 4,
-				ip_address: clientIp,
-			};
-
-			var data = {
-				event_type: 'alarm-deactivated',
-				message: 'Alarm has been activated',
-				event: event,
-			};
-
-			socket.emit('deactivate-alarm', data);
-		}
-	};
 
 	$scope.changeStatusClick = function (event, sensor) {
 
@@ -205,7 +169,6 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 				event: event,
 			};
 
-			console.log(event);
 			socket.emit('activate-alarm', data);
 		}
 		else {
@@ -233,6 +196,7 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 			station_id: parseInt($scope.sensorToHandle.station_id),
 			event_type_id: eventTypeId,
 			ip_address: clientIp,
+			alarm_cooldown: $scope.cooldown,
 		};
 
 		var data = {
@@ -241,7 +205,6 @@ function ($scope, $rootScope, $routeParams, stationAlarmService, stationSensorSe
 			event: event,
 		};
 
-		console.log(event);
 		socket.emit('deactivate-alarm', data);
 	}
 
