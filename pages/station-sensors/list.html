@@ -1,0 +1,24 @@
+<h1>Station Sensors</h1>
+
+<div class="row">
+	<table class="bordered highlight responsive-table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="stationSensor in stationSensors track by $index" id="row-{{ stationSensor.id }}">
+				<td>{{ stationSensor.id }}</td>
+				<td>{{ stationSensor.label }}</td>
+				<td>
+					<a class="btn btn-default" ng-click="edit(stationSensor.id)">
+						<i class="fa fa-pencil"></i>&nbsp;Edit
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -36,6 +36,7 @@
     <script type="text/javascript" src="app/modules/stations.js"></script>
     <script type="text/javascript" src="app/modules/reports.js"></script>
     <script type="text/javascript" src="app/modules/stationAlarms.js"></script>
+    <script type="text/javascript" src="app/modules/stationSensors.js"></script>
     <script type="text/javascript" src="app/controllers/sessionController.js"></script>
     <script type="text/javascript" src="app/controllers/profileController.js"></script>
     <script type="text/javascript" src="app/controllers/users/userListController.js"></script>
@@ -52,6 +53,8 @@
     <script type="text/javascript" src="app/controllers/reports/reportMakeController.js"></script>
     <script type="text/javascript" src="app/controllers/reports/reportShowController.js"></script>
     <script type="text/javascript" src="app/controllers/station-alarms/stationAlarmsListController.js"></script>
+    <script type="text/javascript" src="app/controllers/station-sensors/stationSensorsListController.js"></script>
+    <script type="text/javascript" src="app/controllers/station-sensors/stationSensorsEditController.js"></script>
     <script type="text/javascript" src="app/services/authService.js"></script>
 	<script type="text/javascript" src="app/services/userService.js"></script>
     <script type="text/javascript" src="app/services/groupService.js"></script>
@@ -73,6 +76,7 @@
                     <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
                     <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
                     <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
+                    <li ng-show="token"><a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a></li>
                     <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
                     <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
                     <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
@@ -96,6 +100,7 @@
                     <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
                     <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
                     <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
+                    <li ng-show="token"><a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a></li>
                     <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
                     <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
                     <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
