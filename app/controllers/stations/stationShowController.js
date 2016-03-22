@@ -118,8 +118,8 @@ function ($scope, $rootScope , $location, $routeParams, stationService, userServ
 
     // We catch the paramters for the url
     $scope.stationId = $routeParams.id;
-    $scope.start = moment().format('MM-DD-YYYY');
-    $scope.end = moment().format('MM-DD-YYYY');
+    $scope.start = moment().format('YYYY-MM-DD');
+    $scope.end = moment().format('YYYY-MM-DD');
     $scope.lapse = 'day';
 
     // We setup the label for the charts
