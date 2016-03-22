@@ -3,6 +3,7 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 	return {
 
 		getUsers: function(success, error) {
+
 			$http.get(urls.BASE + '/user').success(success).error(error);
 		},
 		getProfile: function(success, error) {
@@ -25,13 +26,27 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 			
 			$http.delete(urls.BASE + '/user/' + id).success(success).error(error);
 		},
-		giveRole: function (success, error, userId, roleId){
+		giveRole: function (success, error, userId, roleId) {
 
 			$http.post(url.BASE + '/user/give-role/' + userId + '/' + roleId).success(success).error(error);
 		},
-		retrieveRole: function (success, error, userId, roleId){
+		retrieveRole: function (success, error, userId, roleId) {
 
-			$http.post(url.BASE + '/user/retrieve-role/' + userId + '/' + roleId).success(success).error(error);
-		}
+			$http.post(urls.BASE + '/user/retrieve-role/' + userId + '/' + roleId).success(success).error(error);
+		},
+		checkPermissions: function (success, error) {
+
+			var permissions = {
+				permissions: [
+					'users', 
+					'groups', 
+					'view_stations', 
+					'alarms_stations', 
+					'events_stations', 
+					'station_sensors',
+				], 
+			}
+			$http.post(urls.BASE + '/user/check-permissions', permissions).success(success).error(error);
+		},
 	};
 }]);

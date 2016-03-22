@@ -27,6 +27,16 @@ alinaApp.controller('navbarController', function ($scope, $window, authService, 
 
 			console.log('Failed to fetch profile data.');
 		});
+
+		userService.checkPermissions(function (response) {
+
+			$scope.userPermissions = response.data;
+			console.log($scope.userPermissions);
+		},
+		function () {
+
+			console.log('Failed to fetch user permissions.');
+		});
 	}
 
 	$scope.logout = function () {

@@ -72,14 +72,30 @@
             <div class="nav-wrapper">
                 <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-desktop-l" class="left hide-on-med-and-down">
-                    <li><a href="#home"><i class="material-icons left">home</i> Home</a></li>
-                    <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
-                    <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
-                    <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
-                    <li ng-show="token"><a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a></li>
-                    <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
-                    <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
-                    <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
+                    <li>
+                        <a href="#home"><i class="material-icons left">home</i> Home</a>
+                    </li>
+                    <li ng-if="token && userPermissions.users">
+                        <a href="#users"><i class="fa fa-user"></i> Users</a>
+                    </li>
+                    <li ng-if="token && userPermissions.groups">
+                        <a href="#groups"><i class="fa fa-users"></i> Groups</a>
+                    </li>
+                    <li ng-if="token && userPermissions.view_stations">
+                        <a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a>
+                    </li>
+                    <li ng-if="token && userPermissions.station_sensors">
+                        <a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a>
+                    </li>
+                    <li ng-if="token && userPermissions.alarms_stations">
+                        <a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a>
+                    </li>
+                    <li ng-if="token && userPermissions.events_stations">
+                        <a href="#stations/events/1"><i class="fa fa-list"></i> Events</a>
+                    </li>
+                    <li>
+                        <a href="#about"><i class="material-icons left">info</i> About</a>
+                    </li>
                 </ul>
                 <ul id="nav-desktop-r" class="right hide-on-med-and-down">
                     <li ng-if="token">
@@ -96,14 +112,30 @@
                 </ul>
                 <!-- Mobile -->
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#home"><i class="material-icons left">home</i> Home</a></li>
-                    <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
-                    <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
-                    <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
-                    <li ng-show="token"><a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a></li>
-                    <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
-                    <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
-                    <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
+                    <li>
+                        <a href="#home"><i class="material-icons left">home</i> Home</a>
+                    </li>
+                    <li ng-if="token && userPermissions.users">
+                        <a href="#users"><i class="fa fa-user"></i> Users</a>
+                    </li>
+                    <li ng-if="token && userPermissions.groups">
+                        <a href="#groups"><i class="fa fa-users"></i> Groups</a>
+                    </li>
+                    <li ng-if="token && userPermissions.view_stations">
+                        <a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a>
+                    </li>
+                    <li ng-if="token && userPermissions.station_sensors">
+                        <a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a>
+                    </li>
+                    <li ng-if="token && userPermissions.alarms_stations">
+                        <a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a>
+                    </li>
+                    <li ng-if="token && userPermissions.events_stations">
+                        <a href="#stations/events/1"><i class="fa fa-list"></i> Events</a>
+                    </li>
+                    <li>
+                        <a href="#about"><i class="material-icons left">info</i> About -{{ userPermissions.events-stations}}-</a>
+                    </li>
 
                     <li ng-if="token">
                         <a class="dropdown-button btn" href="#" data-activates="user-drop-down-mobile" data-beloworigin="true">

@@ -36,6 +36,7 @@ alinaApp.controller('stationSensorsEditController', function ($scope, $routePara
 		$scope.sensor);
 	}
 
+	$('#notification-phones').trigger('autoresize');
 	$('#notification-emails').trigger('autoresize');
 	$('#notification-text').trigger('autoresize');
 
