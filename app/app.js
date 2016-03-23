@@ -8,7 +8,9 @@ var alinaApp = angular.module('alinaApp', [
 	'stations',
 	'reports',
 	'station-alarms',
+	'station-sensors',
 	'ui.materialize',
+	'timer',
 ]);
 
 alinaApp.controller('navbarController', function ($scope, $window, authService, userService) {
@@ -24,6 +26,16 @@ alinaApp.controller('navbarController', function ($scope, $window, authService, 
 		function () {
 
 			console.log('Failed to fetch profile data.');
+		});
+
+		userService.checkPermissions(function (response) {
+
+			$scope.userPermissions = response.data;
+			console.log($scope.userPermissions);
+		},
+		function () {
+
+			console.log('Failed to fetch user permissions.');
 		});
 	}
 

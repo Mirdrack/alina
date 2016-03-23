@@ -1,9 +1,32 @@
+<style type="text/css">
+.sensor-container
+{
+	margin-left: 20px;
+	float: left;
+}
+
+.clear-fix
+{
+	clear: both;
+}
+
+</style>
 <h1>{{ station.name }}</h1>
 
 <div class="row">
-	<a id="alarm-switch" class="btn btn-default" ng-click="changeAlarmStatus(station.id)">
-		<i class="fa fa-power-off"></i>&nbsp;{{ btnAlarmLabel }}
-	</a>
+
+	<div ng-repeat="sensor in sensors track by $index" id="sensor-{{ sensor.id }}" class="sensor-container">
+		{{ sensor.label }}
+		<br>
+		<a id="{{ sensor.name }}-switch" class="btn btn-default" ng-click="changeStatusClick($event, sensor)">
+			<i class="fa fa-power-off"></i>&nbsp;{{ sensor.btnAlarmLabel }}
+		</a>
+		<br>
+		<timer ng-if="!sensor.alarm_activated" countdown="sensor.endTime" max-time-unit="'minute'" interval="1000">
+			Alarm will be inactive:<br>{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}
+		</timer>
+	</div>
+	<div class="clear-fix"></div>
 </div>
 
 <div class="row">
@@ -38,4 +61,17 @@
 		scroll-top="false"
 		pagination-action="changePage(page)" 
 	/>
+</div>
+
+<!-- Modal Structure -->
+<div id="deactivate-modal" class="modal">
+    <div class="modal-content">
+		<h4>Deactivate alarm</h4>
+		<p>Enter the minutes to turn off alarm</p>
+		<input type="text" maxlength="4" ng-model="cooldown"></input>
+    </div>
+    <div class="modal-footer">
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="deactivateAlarm($event)">Turn Off</a>
+            <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat" ng-click="closeModal($event)">Cancel</a>
+	</div>
 </div>

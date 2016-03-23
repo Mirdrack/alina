@@ -16,6 +16,10 @@
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="bower_components/nvd3/build/nv.d3.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
+    <script type="text/javascript" src="bower_components/momentjs/min/moment.min.js"></script>
+    <script type="text/javascript" src="bower_components/momentjs/min/locales.min.js"></script>
+    <script type="text/javascript" src="bower_components/humanize-duration/humanize-duration.js"></script>
+    <script type="text/javascript" src="bower_components/angular-timer/dist/angular-timer.min.js"></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css">
@@ -32,6 +36,7 @@
     <script type="text/javascript" src="app/modules/stations.js"></script>
     <script type="text/javascript" src="app/modules/reports.js"></script>
     <script type="text/javascript" src="app/modules/stationAlarms.js"></script>
+    <script type="text/javascript" src="app/modules/stationSensors.js"></script>
     <script type="text/javascript" src="app/controllers/sessionController.js"></script>
     <script type="text/javascript" src="app/controllers/profileController.js"></script>
     <script type="text/javascript" src="app/controllers/users/userListController.js"></script>
@@ -48,6 +53,8 @@
     <script type="text/javascript" src="app/controllers/reports/reportMakeController.js"></script>
     <script type="text/javascript" src="app/controllers/reports/reportShowController.js"></script>
     <script type="text/javascript" src="app/controllers/station-alarms/stationAlarmsListController.js"></script>
+    <script type="text/javascript" src="app/controllers/station-sensors/stationSensorsListController.js"></script>
+    <script type="text/javascript" src="app/controllers/station-sensors/stationSensorsEditController.js"></script>
     <script type="text/javascript" src="app/services/authService.js"></script>
 	<script type="text/javascript" src="app/services/userService.js"></script>
     <script type="text/javascript" src="app/services/groupService.js"></script>
@@ -55,6 +62,7 @@
     <script type="text/javascript" src="app/services/reportService.js"></script>
     <script type="text/javascript" src="app/services/stationAlarmService.js"></script>
     <script type="text/javascript" src="app/services/stationEventService.js"></script>
+    <script type="text/javascript" src="app/services/stationSensorService.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -64,13 +72,30 @@
             <div class="nav-wrapper">
                 <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-desktop-l" class="left hide-on-med-and-down">
-                    <li><a href="#home"><i class="material-icons left">home</i> Home</a></li>
-                    <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
-                    <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
-                    <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
-                    <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
-                    <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
-                    <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
+                    <li>
+                        <a href="#home"><i class="material-icons left">home</i> Home</a>
+                    </li>
+                    <li ng-if="token && userPermissions.users">
+                        <a href="#users"><i class="fa fa-user"></i> Users</a>
+                    </li>
+                    <li ng-if="token && userPermissions.groups">
+                        <a href="#groups"><i class="fa fa-users"></i> Groups</a>
+                    </li>
+                    <li ng-if="token && userPermissions.view_stations">
+                        <a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a>
+                    </li>
+                    <li ng-if="token && userPermissions.station_sensors">
+                        <a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a>
+                    </li>
+                    <li ng-if="token && userPermissions.alarms_stations">
+                        <a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a>
+                    </li>
+                    <li ng-if="token && userPermissions.events_stations">
+                        <a href="#stations/events/1"><i class="fa fa-list"></i> Events</a>
+                    </li>
+                    <li>
+                        <a href="#about"><i class="material-icons left">info</i> About</a>
+                    </li>
                 </ul>
                 <ul id="nav-desktop-r" class="right hide-on-med-and-down">
                     <li ng-if="token">
@@ -87,13 +112,30 @@
                 </ul>
                 <!-- Mobile -->
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#home"><i class="material-icons left">home</i> Home</a></li>
-                    <li ng-if="token"><a href="#users"><i class="fa fa-user"></i> Users</a></li>
-                    <li ng-if="token"><a href="#groups"><i class="fa fa-users"></i> Groups</a></li>
-                    <li ng-show="token"><a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a></li>
-                    <li ng-show="token"><a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a></li>
-                    <li ng-show="token"><a href="#stations/events/1"><i class="fa fa-list"></i> Events</a></li>
-                    <li><a href="#about"><i class="material-icons left">info</i> About</a></li>
+                    <li>
+                        <a href="#home"><i class="material-icons left">home</i> Home</a>
+                    </li>
+                    <li ng-if="token && userPermissions.users">
+                        <a href="#users"><i class="fa fa-user"></i> Users</a>
+                    </li>
+                    <li ng-if="token && userPermissions.groups">
+                        <a href="#groups"><i class="fa fa-users"></i> Groups</a>
+                    </li>
+                    <li ng-if="token && userPermissions.view_stations">
+                        <a href="#stations/show/1"><i class="fa fa-bar-chart"></i> Monitor</a>
+                    </li>
+                    <li ng-if="token && userPermissions.station_sensors">
+                        <a href="#station-sensors"><i class="fa fa-eye"></i> Sensors</a>
+                    </li>
+                    <li ng-if="token && userPermissions.alarms_stations">
+                        <a href="#stations/alarms/1"><i class="fa fa-bell"></i> Alarms</a>
+                    </li>
+                    <li ng-if="token && userPermissions.events_stations">
+                        <a href="#stations/events/1"><i class="fa fa-list"></i> Events</a>
+                    </li>
+                    <li>
+                        <a href="#about"><i class="material-icons left">info</i> About -{{ userPermissions.events-stations}}-</a>
+                    </li>
 
                     <li ng-if="token">
                         <a class="dropdown-button btn" href="#" data-activates="user-drop-down-mobile" data-beloworigin="true">
