@@ -2,49 +2,89 @@ alinaApp.controller('groupEditController', function ($scope, $routeParams, $loca
 
 	$scope.pageClass = 'page-standard';
 
-	groupService.getPermissions(
-		function (response) {
+	groupService.getGroup(function(response) {
 
-			$scope.permissions = response.data;
+		$scope.group = response.data;
+		$scope.group.resources = [];
 
-			groupService.getGroup(
-			function (response) {
+		for(index in $scope.group.permissions) {
 
-				$scope.group = response.data;
-				for(var x = 0;$scope.permissions.length < x; x++) {
-					var o = jQuery.inArray($scope.permissions[x], $scope.group.permissions);
-					if(o > -1) {
-						$scope.permissions.splice(o,1);
+			$scope.group.resources.push(parseInt($scope.group.permissions[index].id));
+		}
+
+		groupService.getPermissions(function (response) {
+
+			$scope.resources = response.data;
+			var elementsToDrop = [];
+
+			for(var cont = 0; cont < $scope.resources.length; cont++) {
+
+				if(checkPermission($scope.resources[cont].name, $scope.group.permissions)) {
+
+					elementsToDrop.push($scope.resources[cont].name);
+				}
+			}
+
+			for(var contOut = 0; contOut < elementsToDrop.length; contOut++) {
+
+				for(var contIn = 0; contIn < $scope.resources.length; contIn++) {
+					
+					if($scope.resources[contIn].name == elementsToDrop[contOut]) {
+						
+						$scope.resources.splice(elementsToDrop[contOut], 1);
 					}
 				}
+			}
 
-				jQuery('#listPerms , #groupPerms').sortable({
-					connectWith: '.dragg-connected'
-				}).disableSelection();
-				jQuery('#listPerms').on('sortreceive', function (event, ui) {
+			jQuery('#listPerms , #groupPerms').sortable({
+				connectWith: '.dragg-connected'
+			}).disableSelection();
 
-					$scope.group.permissions.splice(jQuery.inArray(ui.item[0].value, $scope.group.permissions), 1);
-					console.log($scope.group.permissions);
-				});
-				jQuery('#groupPerms').on('sortreceive', function (event, ui) {
+			jQuery('#listPerms').on('sortreceive', function (event, ui) {
 
-					$scope.group.permissions.push(ui.item[0].value);
-					console.log($scope.group.permissions);
-				});
-			},
-			function (response) {
+				$scope.group.resources.splice(jQuery.inArray(ui.item[0].value, $scope.group.resources), 1);
+				console.log($scope.group.resources);
 
-				$scope.groupError = response.error
-			}, 
-			$routeParams.id
-			);
+				groupService.retrievePermission(
+				function () {
 
+					console.log('Resource detached.');
+				}, 
+				function () {
+
+					console.log('Error on update.');
+				}, 
+				$scope.group.id, 
+				ui.item[0].value);
+			});
+			
+			jQuery('#groupPerms').on('sortreceive', function (event, ui) {
+
+				$scope.group.resources.push(ui.item[0].value);
+				console.log($scope.group.resources);
+
+				groupService.givePermission(
+			 	function () {
+
+			 			console.log('Resource attached.');
+			 	}, function () {
+
+			 		console.log('Error on update.');
+			 	}, 
+			 	$scope.group.id, ui.item[0].value);
+			});
 		},
-		function (response) {
+		function () {
 
-			$scope.permissionsError = response.error;
-		}
-	);
+			console.log('Failed to retrieve permissions');
+		});
+
+	},
+	function () {
+
+		console.log('Failed to retrieve group');
+	}, 
+	$routeParams.id);
 
 
 
@@ -68,5 +108,25 @@ alinaApp.controller('groupEditController', function ($scope, $routeParams, $loca
 			$scope.group
 		);
 	};
+
+	function checkPermission(permission, list) {
+
+		for (var cont = 0; cont < list.length; cont++) {
+	        
+	        if (list[cont].name === permission) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
+	function arrayObjectIndexOf(myArray, searchTerm, property) {
+	    
+	    for(var i = 0, len = myArray.length; i < len; i++) {
+	        
+	        if (myArray[i][property] === searchTerm) return i;
+	    }
+	    return -1;
+	}
 
 });

@@ -26,11 +26,11 @@ alinaApp.factory('groupService', ['$http', 'urls', '$window', function ($http, u
 		},
 		givePermission: function (success, error, roleid, permissionid) {
 
-			$http.get(urls.BASE + '/role/give-permission/' + roleid + '/' + permissionid).success(success).error(error);
+			$http.post(urls.BASE + '/role/give-permission/' + roleid + '/' + permissionid).success(success).error(error);
 		},
 		retrievePermission: function (success, error, roleid, permissionid) {
 
-			$http.get(urls.BASE + '/role/retrieve-permission/' + roleid + '/' + permissionid).success(success).error(error);
+			$http.post(urls.BASE + '/role/retrieve-permission/' + roleid + '/' + permissionid).success(success).error(error);
 		},
 		getPermissions: function (success, error) {
 

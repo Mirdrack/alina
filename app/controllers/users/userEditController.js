@@ -6,16 +6,21 @@ alinaApp.controller('userEditController', function ($scope, $routeParams, $locat
 
 		$scope.user = response.data;
 		$scope.user.groups = [];
+		for(index in $scope.user.roles) {
+			console.log($scope.user.roles[index]);
+			$scope.user.groups.push(parseInt($scope.user.roles[index].id));
+		}
 
 		groupService.getGroups(
 		function (response) {
 
 			$scope.groups = response.data;
 
-			for(var x = 0;$scope.groups.length < x; x++) {
-				var o = jQuery.inArray($scope.groups[x], $scope.user.groups);
-				if(o > -1) {
-					$scope.groups.splice(o,1);
+			for(var cont = 0; cont < $scope.groups.length; cont++) {
+
+				if(checkRole($scope.groups[cont].name, $scope.user.roles)) {
+
+					$scope.groups.splice(cont, 1);
 				}
 			}
 
@@ -28,13 +33,37 @@ alinaApp.controller('userEditController', function ($scope, $routeParams, $locat
 
 				$scope.user.groups.splice(jQuery.inArray(ui.item[0].value, $scope.user.groups), 1);
 				console.log($scope.user.groups);
+
+				userService.retrieveRole(
+				function () {
+
+					console.log('Role detached.');
+				}, 
+				function () {
+
+					console.log('Error on update.');
+				}, 
+				$scope.user.id, 
+				ui.item[0].value);
 			});
 
 			jQuery('#userGroups').on('sortreceive', function (event, ui) {
 
 				$scope.user.groups.push(ui.item[0].value);
 				console.log($scope.user.groups);
+
+			 	userService.giveRole(
+			 	function () {
+
+			 			console.log('Role attached.');
+			 	}, function () {
+
+			 		console.log('Error on update.');
+			 	}, 
+			 	$scope.user.id, ui.item[0].value);
+
 			});
+
 		},
 		function (response) {
 
@@ -51,6 +80,8 @@ alinaApp.controller('userEditController', function ($scope, $routeParams, $locat
 
 	$scope.save = function () {
 
+		$scope.user.roles = $scope.user.groups;
+		console.log($scope.user);
 		userService.updateUser(function (response) 
 		{
 			/*
@@ -67,6 +98,17 @@ alinaApp.controller('userEditController', function ($scope, $routeParams, $locat
 		},
 		$routeParams.id,
 		$scope.user);
+	}
+
+	function checkRole(role, list) {
+
+		for (cont = 0; cont < list.length; cont++) {
+	        
+	        if (list[cont].name === role) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 
 });
