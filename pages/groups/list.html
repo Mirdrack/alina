@@ -17,7 +17,7 @@
 	    <tbody>
 	    	<tr ng-repeat="group in groups track by $index" id="row-{{ group.id }}">
 	    		<td>{{ group.id }}</td>
-	    		<td>{{ group.name }}</td>
+	    		<td>{{ group.label }}</td>
 	    		<td>{{ group.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
 	    		<td>
 	    			<a class="btn btn-default" ng-click="view(group.id)" >
