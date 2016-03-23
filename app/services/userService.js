@@ -28,7 +28,7 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 		},
 		giveRole: function (success, error, userId, roleId) {
 
-			$http.post(url.BASE + '/user/give-role/' + userId + '/' + roleId).success(success).error(error);
+			$http.post(urls.BASE + '/user/give-role/' + userId + '/' + roleId).success(success).error(error);
 		},
 		retrieveRole: function (success, error, userId, roleId) {
 

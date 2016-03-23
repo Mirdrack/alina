@@ -25,7 +25,7 @@
 	<div class="col s4">
 		<h3>User Groups</h3>
 		<ul id="userGroups" class="dragg-connected groups-list">
-			<li class="card-panel teal lighten-2 list-item" ng-repeat="group in basicGroups" ng-value="{{ group.id }}">
+			<li class="card-panel teal lighten-2 list-item" ng-repeat="group in user.roles" ng-value="{{ group.id }}">
 				{{ group.label }}
 			</li>
 		</ul>
