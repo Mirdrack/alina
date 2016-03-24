@@ -31,7 +31,6 @@ alinaApp.controller('navbarController', function ($scope, $window, authService, 
 		userService.checkPermissions(function (response) {
 
 			$scope.userPermissions = response.data;
-			console.log($scope.userPermissions);
 		},
 		function () {
 

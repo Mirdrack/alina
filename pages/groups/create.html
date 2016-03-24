@@ -1,9 +1,10 @@
 <style type="text/css">
-.list-item {
+.list-item 
+{
 	margin-top: 5px;
 }
 
-.groups-list
+.resource-list
 {
 	min-height: 300px;
 }
@@ -14,30 +15,25 @@
 	<div class="col s4">
 		<h5>Group Data</h5>
 		<form class="form-create-group" ng-submit="create()">
-			<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
+			<div class="text-danger form-error" ng-if="error">{{ error }}</div>
 			Name:
 			<input type="text" ng-model="group.name" class="form-control" placeholder="Name" required>
 			Label:
-			<input type="email" ng-model="group.label" class="form-control" placeholder="Label" required>
+			<input type="text" ng-model="group.label" class="form-control" placeholder="Label" required>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 		</form>
 	</div>
 	<div class="col s4">
 		<h5>Group permissions</h5>
-		<ul id="groupPerms" class="dragg-connected groups-list">
-			<li class="card-panel teal lighten-2 list-item" ng-repeat="perm in basicperm" ng-value="{{ perm.id }}">
-				{{ perm.label }}
-			</li>
+		<ul id="groupPerms" class="dragg-connected resource-list">
+			
 		</ul>
 	</div>
 	<div class="col s4">
 		<h5>Permissions list</h5>
-		<ul id="listPerms" class="dragg-connected groups-list">
-			<li class="card-panel teal lighten-2 perm-dragg list-item" ng-repeat="group in groups" ng-value="{{ group.id }}">
-				{{ group.label }}
-			</li>
-			<li class="card-panel teal lighten-2 perm-dragg list-item" ng-repeat="permission in permissions" ng-value="{{ permission.id }}">
-				{{ permission.label }}
+		<ul id="listPerms" class="dragg-connected resource-list">
+			<li class="card-panel teal lighten-2 perm-dragg list-item" ng-repeat="resource in resources" ng-value="{{ resource.id }}">
+				{{ resource.label }}
 			</li>
 		</ul>
 	</div>

@@ -6,21 +6,33 @@ alinaApp.controller('userEditController', function ($scope, $routeParams, $locat
 
 		$scope.user = response.data;
 		$scope.user.groups = [];
+
 		for(index in $scope.user.roles) {
 			console.log($scope.user.roles[index]);
 			$scope.user.groups.push(parseInt($scope.user.roles[index].id));
 		}
 
-		groupService.getGroups(
-		function (response) {
+		groupService.getGroups(function (response) {
 
 			$scope.groups = response.data;
+			var elementsToDrop = [];
 
 			for(var cont = 0; cont < $scope.groups.length; cont++) {
 
 				if(checkRole($scope.groups[cont].name, $scope.user.roles)) {
 
-					$scope.groups.splice(cont, 1);
+					elementsToDrop.push($scope.groups[cont].name);
+				}
+			}
+
+			for(var contOut = 0; contOut < elementsToDrop.length; contOut++) {
+
+				for(var contIn = 0; contIn < $scope.groups.length; contIn++) {
+
+					if($scope.groups[contIn].name == elementsToDrop[contOut]) {
+
+						$scope.groups.splice(elementsToDrop[contOut], 1);
+					}
 				}
 			}
 
