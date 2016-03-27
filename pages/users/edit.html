@@ -39,6 +39,9 @@
 				required
 			>
 
+			<div class="help-block" ng-messages="userForm.password.$error" ng-if="userForm.password.$touched">
+				<div ng-messages-include="pages/partials/messages.html"></div>
+			</div>
 			Password:
 			<input
 				name="password" 
@@ -49,8 +52,16 @@
 				ng-maxlength="50"
 			>
 
+			<div 
+				class="help-block"
+				ng-messages="userForm.passwordConfirm.$error"
+				ng-model="user.passwordConfirm"
+				ng-if="userForm.passwordConfirm.$touched">
+				<div ng-messages-include="pages/partials/messages.html"></div>
+			</div>
 			Password confirm:
 			<input
+				name="passwordConfirm"
 				type="password"
 				placeholder="Password Confirmation"
 				ng-minlength="6"
