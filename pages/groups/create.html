@@ -14,13 +14,44 @@
 <div class="row">
 	<div class="col s4">
 		<h5>Group Data</h5>
-		<form class="form-create-group" ng-submit="create()">
+		<form name="groupForm" class="form-create-group" ng-submit="create()" novalidate>
 			<div class="text-danger form-error" ng-if="error">{{ error }}</div>
+
+			<div class="help-block" ng-messages="groupForm.name.$error" ng-if="groupForm.name.$touched">
+				<div ng-messages-include="pages/partials/messages.html"></div>
+			</div>
 			Name:
-			<input type="text" ng-model="group.name" class="form-control" placeholder="Name" required>
+			<input
+				type="text"
+				name="name" 
+				ng-model="group.name"
+				placeholder="Name" 
+				ng-minlength="3"
+				ng-maxlength="20"
+				required
+			>
+
+			<div class="help-block" ng-messages="groupForm.label.$error" ng-if="groupForm.label.$touched">
+				<div ng-messages-include="pages/partials/messages.html"></div>
+			</div>
 			Label:
-			<input type="text" ng-model="group.label" class="form-control" placeholder="Label" required>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+			<input
+				type="text"
+				name="label"
+				ng-model="group.label"
+				placeholder="Label"
+				ng-minlength="3"
+				ng-maxlength="20"
+				required
+			>
+			
+			<button
+				type="submit"
+				class="btn btn-lg btn-primary btn-block" 
+				ng-disabled="groupForm.$invalid"
+			>
+				Save
+			</button>
 		</form>
 	</div>
 	<div class="col s4">

@@ -9,11 +9,30 @@
 <div class="row">
 	<div class="col s4">
 		<h5>Group Data</h5>
-		<form class="form-create-group" ng-submit="save()">
+		<form name="groupForm" class="form-create-group" ng-submit="save()">
 			<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
+			
+			<div class="help-block" ng-messages="groupForm.label.$error" ng-if="groupForm.label.$touched">
+				<div ng-messages-include="pages/partials/messages.html"></div>
+			</div>
 			Label:
-			<input type="text" ng-model="group.label" placeholder="Label" required>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+			<input
+				type="text"
+				name="label"
+				ng-model="group.label"
+				placeholder="Label"
+				ng-minlength="3"
+				ng-maxlength="20"
+				required
+			>
+			
+			<button
+				type="submit"
+				class="btn btn-lg btn-primary btn-block" 
+				ng-disabled="groupForm.$invalid"
+			>
+				Save
+			</button>
 		</form>
 	</div>
 	<div class="col s4">
