@@ -11,8 +11,13 @@ function ($rootScope, $scope, $window, userService) {
 	}, 
 	function () {
 
-		$rootScope.error = 'Failed to fetch profile data.';
+		$scope.error = 'Failed to fetch profile data.';
 	});
+
+	$scope.changePassword = function () {
+
+		console.log($scope.user);
+	}
 
 	
 

@@ -1,3 +1,51 @@
-Id: {{ user.id }} <br>
-Name: {{ user.name }} <br>
-Member since: {{ user.created_at | date:"MM/dd/yyyy 'at' h:mma" }} <br>
+<style type="text/css">
+#change-password
+{
+	margin-top: 35px;
+}
+</style>
+<h1>{{ user.name }}</h1>
+Member since: {{ user.created_at | date:"MM/dd/yyyy 'at' h:mma" }}
+<br>
+
+<div id="change-password">
+	<h4>Change Password</h4>
+	<form name="passForm" ng-submit="changePassword()" novalidate>
+		
+		<div class="help-block" ng-messages="passForm.password.$error" ng-if="passForm.password.$touched">
+			<div ng-messages-include="pages/partials/messages.html"></div>
+		</div>
+		Password:
+		<input
+			name="password" 
+			type="password"
+			ng-model="user.password"
+			placeholder="Password"
+			ng-minlength="6"
+			ng-maxlength="50"
+			required
+		>
+		
+		<div class="help-block" ng-messages="passForm.passwordConfirm.$error" ng-if="passForm.passwordConfirm.$touched">
+			<div ng-messages-include="pages/partials/messages.html"></div>
+		</div>
+		Password confirm:
+		<input 
+			name="passwordConfirm"
+			type="password"
+			ng-model="user.passwordConfirm"
+			placeholder="Password Confirmation"
+			ng-minlength="6"
+			ng-maxlength="50"
+			required 
+		>
+
+		<button 
+			type="submit"
+			class="btn btn-lg btn-primary btn-block"  
+			ng-disabled="passForm.$invalid"
+		>
+			Save
+		</button>
+	</form>
+</div>
