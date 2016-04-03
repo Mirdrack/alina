@@ -1,20 +1,37 @@
 <h1>{{ station.name }}</h1>
+<div class="row">
+	<div class="col s4 right">
+		<div class="input-field">
+			<select
+				ng-model="filter.event_type_id"
+				ng-options="eventOption.value as eventOption.label for eventOption in filter.eventOptions"
+				material-select
+				watch
+			>
+				<option value="">Event type</option>
+			</select>
+		</div>
+	</div>
+</div>
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
 	    <thead>
 	    	<tr>
 		    	<th>ID</th>
-		    	<th>Name</th>
+				<th>Type</th>
 		    	<th>User</th>
 		    	<th>IP</th>
 		    	<th>Created</th>
 	    	</tr>
 	    </thead>
 	    <tbody>
-	    	<tr ng-repeat="stationEvent in stationEvents track by $index" id="row-{{ stationEvent.id }}">
+			<tr
+				id="row-{{ stationEvent.id }}"
+				ng-repeat="stationEvent in stationEvents | filter: {event_type_id: filter.event_type_id} : true track by $index"
+			>
 	    		<td>{{ stationEvent.id }}</td>
-	    		<td>{{ stationEvent.event_type.label }}</td>
+				<td>{{ stationEvent.event_type.label}}</td>
 	    		<td>{{ stationEvent.user.name }}</td>
 	    		<td>{{ stationEvent.ip_address }}</td>
 	    		<td>{{ stationEvent.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</td>
