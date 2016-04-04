@@ -30,7 +30,4 @@ function ($rootScope, $scope, $window, userService, authService) {
 		},
 		$scope.user);
 	}
-
-	
-
 }]);
