@@ -11,6 +11,7 @@ var alinaApp = angular.module('alinaApp', [
 	'station-sensors',
 	'ui.materialize',
 	'timer',
+	'ngMessages',
 ]);
 
 alinaApp.controller('navbarController', function ($scope, $window, authService, userService) {
