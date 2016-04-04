@@ -48,5 +48,9 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 			}
 			$http.post(urls.BASE + '/user/check-permissions', permissions).success(success).error(error);
 		},
+		updatePassword: function(success, error, data) {
+
+			$http.post(urls.BASE + '/user/change-password', data).success(success).error(error);
+		},
 	};
 }]);
