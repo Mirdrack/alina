@@ -47,7 +47,7 @@ text
 				<th>Date</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat="read in station.reads track by $index | orderBy:'-id'" id="row-{{ $index }}">
+		<tbody ng-repeat="read in station.reads | orderBy:'-id' track by $index" id="row-{{ $index }}">
 			<tr>
 				<td>{{ read.id }}</td>
 				<td>{{ read.dynamic_level }} m</td>
