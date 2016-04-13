@@ -14,6 +14,10 @@ alinaApp.factory('stationService', ['$http', 'urls', '$window', function ($http,
 			
 			$http.get(urls.BASE + '/station/' + id).success(success).error(error);
 		},
+		updateStation: function(success, error, id, data) {
+
+			$http.put(urls.BASE + '/station/' + id, data).success(success).error(error);
+		},
 		turnOn: function(success, error, id) {
 
 			$http.post(urls.BASE + '/station/turn-on', { 'id': id }).success(success).error(error);

@@ -1,0 +1,27 @@
+<h1>Edit Station</h1>
+<div class="row">
+	<div class="col s4">
+		<h3>Station Data</h3>
+		<form name="stationForm" class="form-edit-station" ng-submit="save()" novalidate>
+			<div class="text-danger form-error" data-ng-show="error">{{ error }}</div>
+
+			<div class="help-block" ng-messages="stationForm.name.$error" ng-if="stationForm.name.$touched">
+				<div ng-messages-include="pages/partials/messages.html"></div>
+			</div>
+			Name:
+			<input
+				type="text"
+				name="name"
+				ng-model="station.name"
+				class="form-control" 
+				placeholder="Name"
+				ng-minlength="3"
+				ng-maxlength="50"
+				required
+			>
+
+			<!-- Here we going to put the New fields -->
+		</form>
+	</div>
+
+</div>
