@@ -1,0 +1,26 @@
+<h1>Stations</h1>
+<div class="row">
+	<table class="bordered highlight responsive-table">
+	    <thead>
+	    	<tr>
+		    	<th>ID</th>
+		    	<th>Name</th>
+		    	<th>Actions</th>
+	    	</tr>
+	    </thead>
+	    <tbody>
+	    	<tr ng-repeat="station in stations track by $index" id="row-{{ station.id }}">
+	    		<td>{{ station.id }}</td>
+	    		<td>{{ station.name }}</td>
+	    		<td>
+	    			<a class="btn btn-default" ng-click="view(station.id)" >
+	    				<i class="fa fa-eye"></i>&nbsp;View
+	    			</a>
+	    			<a class="btn btn-default" ng-click="edit(station.id)">
+	    				<i class="fa fa-pencil"></i>&nbsp;Edit
+	    			</a>
+	    		</td>
+	    	</tr>
+	    </tbody>
+	</table>
+</div>
