@@ -17,5 +17,9 @@ angular.module('pages', []).config(function ($routeProvider) {
 			templateUrl: 'pages/users/profile.html',
 			controller: 'profileController'
 		})
+		.when('/recovery', {
+			templateUrl: 'pages/recovery.html',
+			controller: 'profileController'
+		})
 		;
 });
