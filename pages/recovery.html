@@ -1,7 +1,19 @@
 <h1>Password recovery</h1>
 <div class="input-field">
 
-	<form name="recoveryForm" class="form-recovery" ng-submit="recovery()" novalidate>
+	<div class="card red darken-3" ng-show="error">
+		<div class="card-content white-text">
+			<span class="card-title">Error</span>
+			<p>{{ error }}</p>
+		</div>
+	</div>
+	<div class="card green darken-3" ng-show="success">
+		<div class="card-content white-text">
+			<span class="card-title">Success</span>
+			<p>{{ success }}</p>
+		</div>
+	</div>
+	<form id="recoveryForm" name="recoveryForm" class="form-recovery" ng-submit="recovery()" ng-hide="success" novalidate>
 
 		<div class="help-block" ng-messages="recoveryForm.email.$error" ng-if="recoveryForm.name.$touched">
 			<div ng-messages-include="pages/partials/messages.html"></div>
@@ -9,8 +21,8 @@
 		<input
 			type="text"
 			name="email"
-			ng-model="station.name"
-			placeholder="Name"
+			ng-model="user.email"
+			placeholder="Email"
 			required
 		>
 

@@ -1,4 +1,4 @@
-alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, urls, $window) {
+alinaApp.factory('userService', ['$http', 'urls', '$window', '$timeout', function ($http, urls, $window, $timeout) {
 
 	return {
 
@@ -51,6 +51,14 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', function ($http, ur
 		updatePassword: function(success, error, data) {
 
 			$http.post(urls.BASE + '/user/change-password', data).success(success).error(error);
+		},
+		recoveryPassword: function(success, error, data) {
+
+			$http.post(urls.BASE + '/password/recovery', data).success(success).error(error);
+		},
+		resetPassword: function(success, error, data) {
+
+			$http.post(urls.BASE + '/password/reset', data).success(success).error(error);
 		},
 	};
 }]);

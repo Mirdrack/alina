@@ -19,7 +19,11 @@ angular.module('pages', []).config(function ($routeProvider) {
 		})
 		.when('/recovery', {
 			templateUrl: 'pages/recovery.html',
-			controller: 'profileController'
+			controller: 'recoveryController'
+		})
+		.when('/reset', {
+			templateUrl: 'pages/reset.html',
+			controller: 'resetController'
 		})
 		;
 });
