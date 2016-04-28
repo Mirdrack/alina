@@ -1,4 +1,4 @@
-alinaApp.controller('stationListController', function ($scope, $rootScope, $location, stationService) {
+alinaApp.controller('stationListController', function ($scope, $rootScope, $location, stationService, userService) {
 
 	$scope.pageClass = 'page-standard';
 
@@ -9,6 +9,15 @@ alinaApp.controller('stationListController', function ($scope, $rootScope, $loca
 	function (response) {
 
 		$rootScope.error = response.error;
+	});
+
+	userService.checkPermissions(function (response) {
+
+		$scope.userPermissions = response.data;
+	},
+	function () {
+
+		console.log('Failed to fetch user permissions.');
 	});
 
 	$scope.view = function (id) {
