@@ -44,6 +44,7 @@ alinaApp.factory('userService', ['$http', 'urls', '$window', '$timeout', functio
 					'alarms_stations', 
 					'events_stations', 
 					'station_sensors',
+					'station_config',
 				], 
 			}
 			$http.post(urls.BASE + '/user/check-permissions', permissions).success(success).error(error);
