@@ -25,7 +25,7 @@ function ($scope, $rootScope, $routeParams, stationEventService, stationService,
 		$rootScope.error = response.error;
 	});
 
-	$scope.changePage = function (page) {
+	$scope.changePage = function (page, filter) {
 
 		stationEventService.getStationEventsList(function (response) {
 
@@ -35,7 +35,7 @@ function ($scope, $rootScope, $routeParams, stationEventService, stationService,
 		function (response) {
 
 			$rootScope.error = response.error;
-		}, page);
+		}, page, filter);
 	};
 
 	$scope.filter = {};
