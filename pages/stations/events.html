@@ -7,6 +7,7 @@
 				ng-options="eventOption.value as eventOption.label for eventOption in filter.eventOptions"
 				material-select
 				watch
+				ng-change="changePage(page, filter.event_type_id)"
 			>
 				<option value="">Event type</option>
 			</select>
@@ -28,7 +29,7 @@
 	    <tbody>
 			<tr
 				id="row-{{ stationEvent.id }}"
-				ng-repeat="stationEvent in stationEvents | filter: {event_type_id: filter.event_type_id} : true track by $index"
+				ng-repeat="stationEvent in stationEvents track by $index"
 			>
 	    		<td>{{ stationEvent.id }}</td>
 				<td>{{ stationEvent.event_type.label}}</td>
@@ -49,6 +50,6 @@
 		hide-if-empty="false"
 		adjacent="2"
 		scroll-top="false"
-		pagination-action="changePage(page)" 
+		pagination-action="changePage(page, filter.event_type_id)"
 	/>
 </div>
