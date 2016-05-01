@@ -25,5 +25,9 @@ angular.module('pages', []).config(function ($routeProvider) {
 			templateUrl: 'pages/reset.html',
 			controller: 'resetController'
 		})
+		.when('/forbidden', {
+			templateUrl: 'pages/forbidden.html',
+			controller: 'forbiddenController'
+		})
 		;
 });

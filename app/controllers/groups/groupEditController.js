@@ -31,7 +31,7 @@ alinaApp.controller('groupEditController', function ($scope, $routeParams, $loca
 					
 					if($scope.resources[contIn].name == elementsToDrop[contOut]) {
 						
-						$scope.resources.splice(contOut, 1);
+						$scope.resources.splice(contIn, 1);
 					}
 				}
 			}
